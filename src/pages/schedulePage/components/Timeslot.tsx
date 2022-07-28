@@ -44,6 +44,12 @@ export default function Timeslot({ isSpread, timeObject }: TimeslotProps) {
     return flag ? 'AM' : 'PM';
   };
 
+  function handleClick() {
+    if (window.confirm('Are you sure to cancel the schedule?')) {
+      window.alert('Schedule canceled!');
+    }
+  }
+
   return (
     <section
       className={`items-start rounded-md p-1 bg-gray-200 transition-all duration-300 hover:shadow-lg md:mb-5 md:animate-none ${
@@ -67,6 +73,7 @@ export default function Timeslot({ isSpread, timeObject }: TimeslotProps) {
       <button
         type="button"
         className="flex justify-center items-center w-4 h-4 ml-1 rounded-full pb-1 bg-stone-400 font-bold text-stone-200"
+        onClick={handleClick}
       >
         ×
       </button>
