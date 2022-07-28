@@ -5,9 +5,9 @@ import { Outlet } from 'react-router-dom';
 function Header() {
   return (
     <>
-      <div>
-        <img src={Logo} alt="" />
-      </div>
+      <header className="flex pb-1 pl-4 items-end h-12 bg-headerBackground">
+        <img className="w-16" src={Logo} alt="logo" />
+      </header>
       <Outlet />
     </>
   );
