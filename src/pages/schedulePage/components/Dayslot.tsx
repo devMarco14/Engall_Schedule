@@ -1,16 +1,23 @@
 import React from 'react';
+import { DayObject } from 'types/customTypes';
 import Timeslot from './Timeslot';
 
 interface DayslotProps {
   day: string;
-  times: any;
+  timeList: DayObject[];
 }
 
-export default function Dayslot({ day, times }: DayslotProps) {
+export default function Dayslot({ day, timeList }: DayslotProps) {
   const [isSpread, setSpread] = React.useState<boolean>(false);
-  const bar = Object.values(times).map((timeObject: any, index: number) => {
-    return <Timeslot isSpread={isSpread} timeObject={timeObject} />;
-  });
+  const timeListToTimeslot = Object.values(timeList).map(
+    (dayObject: DayObject) => {
+      return <Timeslot isSpread={isSpread} dayObject={dayObject} />;
+    },
+  );
+
+  function handleClick() {
+    setSpread(!isSpread);
+  }
 
   return (
     <article
@@ -27,24 +34,19 @@ export default function Dayslot({ day, times }: DayslotProps) {
       >
         <h2 className="flex justify-between w-[calc(100%-1.5rem)] pb-1 font-bold text-lg md:justify-center">
           {day}
-          <span className="inline-block md:hidden">({times.length})</span>
+          <span className="inline-block md:hidden">({timeList.length})</span>
         </h2>
         <button
           type="button"
           className={`block rounded-full w-6 h-6 ml-1 pb-1 bg-stone-400 text-stone-200 transition-transform md:hidden ${
             isSpread ? 'rotate-180' : 'rotate-0'
           }`}
-          onClick={() => setSpread(!isSpread)}
+          onClick={handleClick}
         >
           ▲
         </button>
       </section>
-      {bar}
-      {/* <Timeslot isSpread={isSpread} />
-      <Timeslot isSpread={isSpread} />
-      <Timeslot isSpread={isSpread} />
-      <Timeslot isSpread={isSpread} />
-      <Timeslot isSpread={isSpread} /> */}
+      {timeListToTimeslot}
     </article>
   );
 }

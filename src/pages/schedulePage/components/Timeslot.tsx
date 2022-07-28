@@ -1,15 +1,15 @@
 import React from 'react';
+import { DayObject } from 'types/customTypes';
 
 interface TimeslotProps {
   isSpread: boolean;
-  timeObject: any;
+  dayObject: DayObject;
 }
 
-export default function Timeslot({ isSpread, timeObject }: TimeslotProps) {
+export default function Timeslot({ isSpread, dayObject }: TimeslotProps) {
   const [needHidden, setNeedHidden] = React.useState<boolean>(false);
   const [isResized, setIsResized] = React.useState<boolean>(false);
-  const { startTime, endTime } = timeObject;
-  // console.log(startTime, endTime);
+  const { startTime, endTime } = dayObject;
 
   React.useEffect(() => {
     let delayedStyleChange: ReturnType<typeof setTimeout>;
