@@ -16,17 +16,19 @@ interface TimeType {
 
 const hourList = getIntervalArray(12, 1, false);
 const minuteList = getIntervalArray(12, 5, true);
+const selectBoxClass =
+  'bg-zinc-50 w-20 h-12 border border-solid border-gray-200 text-center';
 
 function TimeSelect() {
   const [selectedTime, setSelectedTime] =
     React.useState<TimeType>(INITIAL_TIME);
-
   console.log(selectedTime);
 
   return (
-    <section>
+    <section className="flex items-center">
       <SelectBox
-        contents={selectedTime.startTime.hour}
+        className={selectBoxClass}
+        selectedOption={selectedTime.startTime.hour}
         optionList={hourList}
         onSelectOption={(option: number) =>
           setSelectedTime(({ startTime }) => ({
@@ -34,9 +36,12 @@ function TimeSelect() {
             endTime: { ...getEndTime({ ...startTime, hour: option }) },
           }))
         }
+        formatOption={(option: string) => option.padStart(2, '0')}
       />
+      <span className="block mx-1">:</span>
       <SelectBox
-        contents={selectedTime.startTime.minute}
+        className={selectBoxClass}
+        selectedOption={selectedTime.startTime.minute}
         optionList={minuteList}
         onSelectOption={(option: number) =>
           setSelectedTime(({ startTime }) => ({
@@ -44,6 +49,7 @@ function TimeSelect() {
             endTime: { ...getEndTime({ ...startTime, minute: option }) },
           }))
         }
+        formatOption={(option: string) => option.padStart(2, '0')}
       />
     </section>
   );

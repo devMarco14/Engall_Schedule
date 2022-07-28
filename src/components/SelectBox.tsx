@@ -1,37 +1,53 @@
 import React from 'react';
 import Option from 'components/Option';
+import { TiArrowSortedDown as ArrowDownLogo } from 'react-icons/ti';
 
 interface SelectBoxProps {
-  contents?: string | number;
-  optionList?: (string | number)[];
+  optionList: (string | number)[];
+  selectedOption: string | number;
   onSelectOption: React.Dispatch<React.SetStateAction<any>>;
+  formatOption?: (option: string) => string;
+  className?: string;
 }
 
-function SelectBox({ contents, optionList, onSelectOption }: SelectBoxProps) {
+function SelectBox({
+  optionList,
+  selectedOption,
+  onSelectOption,
+  formatOption,
+  className,
+}: SelectBoxProps) {
   const [isToggled, setToggle] = React.useState<boolean>(false);
-
   const handleToggle = () => setToggle((previous) => !previous);
 
   return (
-    <section>
-      <button type="button" onClick={handleToggle}>
-        {contents}
+    <section className={className}>
+      <button
+        type="button"
+        className="flex justify-evenly w-full mx-auto p-4"
+        onClick={handleToggle}
+      >
+        {formatOption
+          ? formatOption(selectedOption.toString())
+          : selectedOption}
+
+        {isToggled ? <ArrowDownLogo color="gray" /> : null}
       </button>
-      <ul>
-        {isToggled
-          ? optionList?.map((option, index) => (
-              <Option
-                key={`${option}_${index}`}
-                onClick={() => {
-                  handleToggle();
-                  onSelectOption(option);
-                }}
-              >
-                {option}
-              </Option>
-            ))
-          : null}
-      </ul>
+      {isToggled ? (
+        <ul className="bg-zinc-50 h-36 text-center overflow-y-scroll scrollbar-hide">
+          {optionList?.map((option, index) => (
+            <Option
+              key={`${option}_${index}`}
+              onClick={() => {
+                handleToggle();
+                onSelectOption(option);
+              }}
+            >
+              {formatOption ? formatOption(option.toString()) : option}
+            </Option>
+          ))}
+        </ul>
+      ) : null}
     </section>
   );
 }

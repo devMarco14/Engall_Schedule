@@ -8,7 +8,10 @@ interface OptionProps {
 
 function Option({ children, onClick }: OptionProps) {
   return (
-    <li onClick={onClick} className="hover:cursor-pointer">
+    <li
+      onClick={onClick}
+      className="border-b border-solid border-gray-200 p-4 hover:cursor-pointer hover:bg-gray-300 first:border"
+    >
       {children}
     </li>
   );
