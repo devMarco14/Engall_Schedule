@@ -1,6 +1,6 @@
 import Header from 'components/Header';
 import AddSchedulePage from 'pages/AddSchedulePage';
-import SchedulePage from 'pages/SchedulePage';
+import SchedulePage from 'pages/schedulePage/SchedulePage';
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Path from './Path';
