@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Path from 'routes/Path';
-import Timeslot from './components/Timeslot';
+import Dayslot from './components/Dayslot';
 
 function SchedulePage() {
   return (
@@ -15,15 +15,15 @@ function SchedulePage() {
           Add Class Schedule
         </Link>
       </section>
-      <article className="flex flex-col md:flex-row justify-around relative md:h-[50vh] md:border md:border-solid md:border-gray-200 py-6 md:shadow-md md:bg-zinc-50 lg:px-4">
+      <article className="flex flex-col md:flex-row justify-around relative md:border md:border-solid md:border-gray-200 py-6 md:shadow-md md:bg-zinc-50 lg:px-4">
         <hr className="hidden md:block md:absolute md:top-12 md:z-0 md:w-[calc(100%-2rem)] md:border md:border-solid" />
-        <Timeslot day="Monday" />
-        <Timeslot day="Tuesday" />
-        <Timeslot day="Wednesday" />
-        <Timeslot day="Thursday" />
-        <Timeslot day="Friday" />
-        <Timeslot day="Saturday" />
-        <Timeslot day="Sunday" />
+        <Dayslot day="Monday" />
+        <Dayslot day="Tuesday" />
+        <Dayslot day="Wednesday" />
+        <Dayslot day="Thursday" />
+        <Dayslot day="Friday" />
+        <Dayslot day="Saturday" />
+        <Dayslot day="Sunday" />
       </article>
     </main>
   );

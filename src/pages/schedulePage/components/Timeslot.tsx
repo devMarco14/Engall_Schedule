@@ -1,45 +1,60 @@
 import React from 'react';
 
-export default function Timeslot({ day }: { day: string }) {
-  const [isSpread, setSpread] = React.useState<boolean>(false);
+export default function Timeslot({ isSpread }: { isSpread: boolean }) {
+  const [needHidden, setNeedHidden] = React.useState<boolean>(false);
+  const [isResized, setIsResized] = React.useState<boolean>(false);
+
+  React.useEffect(() => {
+    let delayedStyleChange: ReturnType<typeof setTimeout>;
+    if (isSpread) {
+      delayedStyleChange = setTimeout(() => setNeedHidden(true), 100);
+    } else {
+      delayedStyleChange = setTimeout(() => setNeedHidden(false), 300);
+    }
+    return () => clearTimeout(delayedStyleChange);
+  }, [isSpread]);
+
+  React.useEffect(() => {
+    const changeResizeState = () => {
+      setIsResized(!isResized);
+    };
+    window.addEventListener('resize', changeResizeState);
+    return () => window.removeEventListener('resize', changeResizeState);
+  }, [isResized]);
+
+  const returnDynamicDisplay = () => {
+    let result: string;
+    if (window.innerWidth < 768) {
+      if (needHidden) result = 'flex';
+      else result = 'none';
+    } else {
+      result = 'flex';
+    }
+    return result;
+  };
+
   return (
-    <article className="flex flex-col items-center z-10 h-full mb-5 rounded-lg shadow-md px-2 py-3 bg-zinc-50 md:mb-0 md:rounded-none md:shadow-none md:py-0 md:bg-transparent">
-      <section
-        className={`flex justify-between items-center max-w-[175px] w-full md:mb-6 ${
-          isSpread ? 'mb-6' : 'mb-0'
-        }`}
+    <section
+      className={`items-start rounded-md p-1 bg-gray-200 transition-all duration-300 hover:shadow-lg md:mb-5 md:animate-none ${
+        isSpread
+          ? 'animate-[spreadTimeslot_0.3s_ease-in-out_forwards]'
+          : 'animate-[foldingTimeslot_0.3s_ease-in-out_forwards]'
+      }`}
+      style={{
+        display: returnDynamicDisplay(),
+      }}
+    >
+      <p className="flex flex-wrap w-[calc(100%-1rem)] text-stone-500 text-base select-none">
+        <span className="whitespace-nowrap">10:00 AM</span>
+        <span className="mx-1 md:mx-auto lg:mx-1">-</span>
+        <span className="whitespace-nowrap">10:40 AM</span>
+      </p>
+      <button
+        type="button"
+        className="flex justify-center items-center w-4 h-4 ml-1 rounded-full pb-1 bg-stone-400 font-bold text-stone-200"
       >
-        <h2 className="flex justify-between w-[calc(100%-1.5rem)] pb-1 font-bold text-lg">
-          {day}
-          <span className="inline-block md:hidden">(9)</span>
-        </h2>
-        <button
-          type="button"
-          className={`block rounded-full w-6 h-6 ml-1 pb-1 bg-stone-400 text-stone-200 md:hidden transition-transform ${
-            isSpread ? 'rotate-180' : 'rotate-0'
-          }`}
-          onClick={() => setSpread(!isSpread)}
-        >
-          ▲
-        </button>
-      </section>
-      <section
-        className={`${
-          isSpread ? 'flex' : 'hidden'
-        } items-start rounded-md p-1 bg-gray-200 hover:shadow-lg md:flex`}
-      >
-        <p className="flex flex-wrap w-[calc(100%-1rem)] text-stone-500 select-none text-base">
-          <span className="whitespace-nowrap">10:00 AM</span>
-          <span className="mx-1 md:mx-auto lg:mx-1">-</span>
-          <span className="whitespace-nowrap">10:40 AM</span>
-        </p>
-        <button
-          type="button"
-          className="flex justify-center items-center w-4 h-4 ml-1 rounded-full pb-1 bg-stone-400 font-bold text-stone-200"
-        >
-          ×
-        </button>
-      </section>
-    </article>
+        ×
+      </button>
+    </section>
   );
 }
