@@ -1,8 +1,17 @@
 import React from 'react';
 import Timeslot from './Timeslot';
 
-export default function Dayslot({ day }: { day: string }) {
+interface DayslotProps {
+  day: string;
+  times: any;
+}
+
+export default function Dayslot({ day, times }: DayslotProps) {
   const [isSpread, setSpread] = React.useState<boolean>(false);
+  const bar = Object.values(times).map((timeObject: any, index: number) => {
+    return <Timeslot isSpread={isSpread} timeObject={timeObject} />;
+  });
+
   return (
     <article
       className={`flex flex-col items-center z-10 h-full mb-5 rounded-lg shadow-md px-2 py-3 bg-zinc-50 md:mb-0 md:rounded-none md:shadow-none md:py-0 md:bg-transparent ${
@@ -18,7 +27,7 @@ export default function Dayslot({ day }: { day: string }) {
       >
         <h2 className="flex justify-between w-[calc(100%-1.5rem)] pb-1 font-bold text-lg md:justify-center">
           {day}
-          <span className="inline-block md:hidden">(9)</span>
+          <span className="inline-block md:hidden">({times.length})</span>
         </h2>
         <button
           type="button"
@@ -30,11 +39,12 @@ export default function Dayslot({ day }: { day: string }) {
           ▲
         </button>
       </section>
+      {bar}
+      {/* <Timeslot isSpread={isSpread} />
       <Timeslot isSpread={isSpread} />
       <Timeslot isSpread={isSpread} />
       <Timeslot isSpread={isSpread} />
-      <Timeslot isSpread={isSpread} />
-      <Timeslot isSpread={isSpread} />
+      <Timeslot isSpread={isSpread} /> */}
     </article>
   );
 }

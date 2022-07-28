@@ -106,7 +106,7 @@ function SchedulePage() {
   const bar = Object.keys(state).map((key: string, index: number) => {
     let result;
     if (state[key].length > 0) {
-      result = <Dayslot day={key} />;
+      result = <Dayslot day={key} times={state[key]} />;
     }
     return result;
   });
@@ -122,7 +122,7 @@ function SchedulePage() {
           Add Class Schedule
         </Link>
       </section>
-      <article className="flex flex-col md:flex-row justify-around relative md:border md:border-solid md:border-gray-200 py-6 md:shadow-md md:bg-zinc-50 lg:px-4">
+      <article className="flex flex-col justify-around relative md:flex-row md:min-h-[50vh] md:border md:border-solid md:border-gray-200 py-6 md:shadow-md md:bg-zinc-50 lg:px-4">
         <hr className="hidden md:block md:absolute md:top-12 md:z-0 md:w-[calc(100%-2rem)] md:border md:border-solid" />
         {/* <Dayslot day="Monday" />
         <Dayslot day="Tuesday" />

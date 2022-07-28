@@ -1,8 +1,15 @@
 import React from 'react';
 
-export default function Timeslot({ isSpread }: { isSpread: boolean }) {
+interface TimeslotProps {
+  isSpread: boolean;
+  timeObject: any;
+}
+
+export default function Timeslot({ isSpread, timeObject }: TimeslotProps) {
   const [needHidden, setNeedHidden] = React.useState<boolean>(false);
   const [isResized, setIsResized] = React.useState<boolean>(false);
+  const { startTime, endTime } = timeObject;
+  // console.log(startTime, endTime);
 
   React.useEffect(() => {
     let delayedStyleChange: ReturnType<typeof setTimeout>;
@@ -33,6 +40,10 @@ export default function Timeslot({ isSpread }: { isSpread: boolean }) {
     return result;
   };
 
+  const returnAmPm = (flag: boolean) => {
+    return flag ? 'AM' : 'PM';
+  };
+
   return (
     <section
       className={`items-start rounded-md p-1 bg-gray-200 transition-all duration-300 hover:shadow-lg md:mb-5 md:animate-none ${
@@ -45,9 +56,13 @@ export default function Timeslot({ isSpread }: { isSpread: boolean }) {
       }}
     >
       <p className="flex flex-wrap w-[calc(100%-1rem)] text-stone-500 text-base select-none">
-        <span className="whitespace-nowrap">10:00 AM</span>
+        <span className="whitespace-nowrap">
+          {startTime?.hour}:{startTime?.minute} {returnAmPm(startTime?.isAM)}
+        </span>
         <span className="mx-1 md:mx-auto lg:mx-1">-</span>
-        <span className="whitespace-nowrap">10:40 AM</span>
+        <span className="whitespace-nowrap">
+          {endTime?.hour}:{endTime?.minute} {returnAmPm(endTime?.isAM)}
+        </span>
       </p>
       <button
         type="button"
