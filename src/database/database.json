@@ -1,0 +1,44 @@
+{
+  "Monday": [
+    {
+      "startTime": { "hour": "10", "minute": "10", "isAM": true },
+      "endTime": { "hour": "10", "minute": "50", "isAM": true }
+    }
+  ],
+  "Tuesday": [
+    {
+      "startTime": { "hour": "10", "minute": "10", "isAM": true },
+      "endTime": { "hour": "10", "minute": "50", "isAM": true }
+    }
+  ],
+  "Wednesday": [
+    {
+      "startTime": { "hour": "10", "minute": "10", "isAM": true },
+      "endTime": { "hour": "10", "minute": "50", "isAM": true }
+    }
+  ],
+  "Thursday": [
+    {
+      "startTime": { "hour": "10", "minute": "10", "isAM": true },
+      "endTime": { "hour": "10", "minute": "50", "isAM": true }
+    }
+  ],
+  "Friday": [
+    {
+      "startTime": { "hour": "10", "minute": "10", "isAM": true },
+      "endTime": { "hour": "10", "minute": "50", "isAM": true }
+    }
+  ],
+  "Saturday": [
+    {
+      "startTime": { "hour": "10", "minute": "10", "isAM": true },
+      "endTime": { "hour": "10", "minute": "50", "isAM": true }
+    }
+  ],
+  "Sunday": [
+    {
+      "startTime": { "hour": "10", "minute": "10", "isAM": true },
+      "endTime": { "hour": "10", "minute": "50", "isAM": true }
+    }
+  ]
+}
