@@ -5,8 +5,8 @@ import Timeslot from './components/Timeslot';
 
 function SchedulePage() {
   return (
-    <main className="bg-backgroundColor lg:mx-7">
-      <section className="flex justify-between w-full my-7 ">
+    <main className="mx-7 bg-backgroundColor md:mx-0 lg:mx-7">
+      <section className="flex justify-between w-full my-7">
         <h1 className="text-xl font-bold">Class schedule</h1>
         <Link
           to={Path.AddClassSchedule}
@@ -15,8 +15,8 @@ function SchedulePage() {
           Add Class Schedule
         </Link>
       </section>
-      <article className="flex justify-around relative h-[50vh] border border-solid border-gray-200 py-6 shadow-md bg-zinc-50 lg:px-4">
-        <hr className="absolute top-12 z-0 w-[calc(100%-2rem)] border border-solid" />
+      <article className="flex flex-col md:flex-row justify-around relative md:h-[50vh] md:border md:border-solid md:border-gray-200 py-6 md:shadow-md md:bg-zinc-50 lg:px-4">
+        <hr className="hidden md:block md:absolute md:top-12 md:z-0 md:w-[calc(100%-2rem)] md:border md:border-solid" />
         <Timeslot day="Monday" />
         <Timeslot day="Tuesday" />
         <Timeslot day="Wednesday" />
