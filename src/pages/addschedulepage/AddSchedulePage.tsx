@@ -1,11 +1,36 @@
+import {
+  HOUR_LIST,
+  INITIAL_SELECTED_TIME,
+  MINUTE_LIST,
+} from 'libs/utils/Constants';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import SelectBox from './components/SelectBox';
 import AMPM from './components/AMPM';
 import DayOfWeek from './components/DayOfWeek';
+import { getClassEndTime } from './utils/index';
+
+interface TimeType {
+  startTime: {
+    hour: number;
+    minute: number;
+  };
+  endTime: {
+    hour: number;
+    minute: number;
+  };
+  isAM?: boolean;
+}
 
 function AddSchedulePage() {
   const [timeToggle, setTimeToggle] = React.useState<string>('');
   const [selectDay, setSelectDay] = React.useState<string[]>([]);
+  const [selectedTime, setSelectedTime] = React.useState<TimeType>(
+    INITIAL_SELECTED_TIME,
+  );
+
+  // 수업 시작 시간 선택할 때 마다 변경되는 데이터 확인 가능
+  console.log(selectedTime);
 
   const navigate = useNavigate();
 
@@ -15,8 +40,57 @@ function AddSchedulePage() {
       <article className="border border-solid border-gray-200 p-7 bg-zinc-50  text-[16px] font-bold">
         <div className="md:flex md:items-center">
           <div className="md:flex md:w-[10%] mb-2">Start time</div>
-          <div className="flex mr-2">셀렉트박스 자리</div>
-          <AMPM timeToggle={timeToggle} setTimeToggle={setTimeToggle} />
+          <div className="flex mr-2">
+            <section className="flex items-center font-normal">
+              {['hour', 'minute'].map((timeType) => (
+                <React.Fragment key={`container_${timeType}`}>
+                  <SelectBox
+                    key={`timeType_${timeType}`}
+                    className="bg-zinc-50 h-12 w-20 border border-solid border-gray-300 text-center z-10"
+                    optionList={timeType === 'hour' ? HOUR_LIST : MINUTE_LIST}
+                    selectedOption={
+                      timeType === 'hour'
+                        ? selectedTime.startTime.hour
+                        : selectedTime.startTime.minute
+                    }
+                    onSelectOption={(option: number) =>
+                      setSelectedTime(({ startTime, isAM }) => ({
+                        startTime: { ...startTime, [timeType]: option },
+                        endTime: {
+                          ...getClassEndTime({
+                            ...startTime,
+                            [timeType]: option,
+                          }),
+                        },
+                        // 사용자가 am, pm 선택 안했을 때 기본값을 true로 정함
+                        isAM: isAM || true,
+                      }))
+                    }
+                    formatOption={(option: string) => option.padStart(2, '0')}
+                  />
+                  <span
+                    key={`colon_${timeType}`}
+                    className={`${
+                      timeType === 'hour' ? 'block' : 'hidden'
+                    } block mx-1`}
+                  >
+                    :
+                  </span>
+                </React.Fragment>
+              ))}
+            </section>
+          </div>
+          <AMPM
+            timeToggle={timeToggle}
+            setTimeToggle={(value: string) => {
+              setTimeToggle(value);
+              setSelectedTime(({ startTime, endTime }: TimeType) => ({
+                startTime: { ...startTime },
+                endTime: { ...endTime },
+                isAM: value === 'AM',
+              }));
+            }}
+          />
         </div>
         <div className="flex flex-wrap md:flex md:items-center md:mt-32">
           <div className="md:flex md:w-[10%] my-2">Repeat on</div>
