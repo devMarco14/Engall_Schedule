@@ -18,7 +18,7 @@
 
 ## **2. 기술 스택**
 
-`react` `type-script` `tailwindcss` `react query` `axios` `json server`
+`react` `type-script` 'react-router-dom' `tailwindcss` `axios` `json server`
 
 <br />
 
