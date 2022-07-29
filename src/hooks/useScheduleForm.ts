@@ -80,15 +80,15 @@ const useScheduleForm = () => {
     ).length;
     console.log(body);
     if (numberOfOverlaps === 0) {
-      // await Promise.all(
-      //   weekdays.map((weekday) => {
-      //     postSchedulesAPI(weekday, {
-      //       id: Math.floor(Math.random() * 10000).toString(),
-      //       startTime: body.startTime,
-      //       endTime: body.endTime,
-      //     });
-      //   }),
-      // );
+      await Promise.all(
+        weekdays.map((weekday) => {
+          postSchedulesAPI(weekday, {
+            id: Math.floor(Math.random() * 10000).toString(),
+            startTime: body.startTime,
+            endTime: body.endTime,
+          });
+        }),
+      );
     } else {
       result = false;
     }

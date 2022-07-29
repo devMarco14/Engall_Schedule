@@ -123,12 +123,12 @@ function AddSchedulePage() {
                   selectDay,
                   selectedTime,
                 );
-                // if (response) {
-                //   alert('Schedule saved!');
-                //   navigate('/');
-                // } else {
-                //   alert('Current schedule is overlapped!');
-                // }
+                if (response) {
+                  alert('Schedule saved!');
+                  navigate('/');
+                } else {
+                  alert('Current schedule is overlapped!');
+                }
               } catch (error) {
                 throw new Error(error as string);
               }
