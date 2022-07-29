@@ -10,7 +10,6 @@ const useScheduleForm = () => {
           id: Math.floor(Math.random() * 10000),
           startTime: body.startTime,
           endTime: body.endTime,
-          isAM: body.isAM,
         });
       }),
     );

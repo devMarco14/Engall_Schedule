@@ -37,6 +37,19 @@
         "minute": 40
       },
       "isAM": false
+    },
+    {
+      "id": 9362,
+      "startTime": {
+        "hour": 1,
+        "minute": 5,
+        "isAM": true
+      },
+      "endTime": {
+        "hour": 1,
+        "minute": 45,
+        "isAM": true
+      }
     }
   ],
   "Wednesday": [
@@ -95,6 +108,19 @@
         "minute": "50"
       },
       "isAM": true
+    },
+    {
+      "id": 1158,
+      "startTime": {
+        "hour": 10,
+        "minute": 5,
+        "isAM": false
+      },
+      "endTime": {
+        "hour": 10,
+        "minute": 45,
+        "isAM": false
+      }
     }
   ],
   "Sunday": [
@@ -109,6 +135,19 @@
         "minute": "50"
       },
       "isAM": true
+    },
+    {
+      "id": 1974,
+      "startTime": {
+        "hour": 10,
+        "minute": 5,
+        "isAM": false
+      },
+      "endTime": {
+        "hour": 10,
+        "minute": 45,
+        "isAM": false
+      }
     }
   ]
 }
