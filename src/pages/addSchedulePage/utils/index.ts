@@ -1,4 +1,6 @@
 /* eslint-disable prettier/prettier */
+import { CLASS_DURATION } from 'libs/utils/Constants';
+
 export const getIntervalArray = (
     length: number,
     interval: number,
@@ -8,12 +10,6 @@ export const getIntervalArray = (
         return Array.from({ length }, (_value, index) => index * interval);
     }
     return Array.from({ length }, (_value, index) => (index + 1) * interval);
-};
-
-const CLASS_DURATION = 40;
-export const INITIAL_TIME = {
-    startTime: { hour: 0, minute: 0 },
-    endTime: { hour: 0, minute: 0 },
 };
 
 export const getClassEndTime = (startTime: { hour: number; minute: number }) => {
