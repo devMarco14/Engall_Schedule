@@ -21,31 +21,29 @@ function AddSchedulePage() {
   const { onSubmitSchedule } = useScheduleForm();
   const navigate = useNavigate();
 
-  const handleSelectOption = (option: number, timeType: string) => {
-    setSelectedTime(({ startTime }) => ({
-      startTime: {
+  const onSelectSchedule = (selectedSchedule: number, timeType: string) => {
+    setSelectedTime(({ startTime }) => {
+      const endTime = getClassEndTime({
         ...startTime,
-        [timeType]: option,
-        isAM: startTime.isAM,
-      },
-      endTime: {
-        ...getClassEndTime({
+        [timeType]: selectedSchedule,
+      });
+      const isEndTimeAM = shouldIsAMChange(
+        startTime.hour,
+        endTime.hour,
+        startTime.isAM,
+      );
+
+      return {
+        startTime: {
           ...startTime,
-          [timeType]: option,
-        }),
-        isAM:
-          startTime.isAM === null
-            ? null
-            : shouldIsAMChange(
-                startTime.hour,
-                getClassEndTime({
-                  ...startTime,
-                  [timeType]: option,
-                }).hour,
-                startTime.isAM,
-              ),
-      },
-    }));
+          [timeType]: selectedSchedule,
+        },
+        endTime: {
+          ...endTime,
+          isAM: startTime.isAM === null ? null : isEndTimeAM,
+        },
+      };
+    });
   };
 
   console.log(selectedTime);
@@ -70,7 +68,7 @@ function AddSchedulePage() {
                         : selectedTime.startTime.minute
                     }
                     onSelectOption={(option: number) => {
-                      handleSelectOption(option, timeType);
+                      onSelectSchedule(option, timeType);
                     }}
                     formatOption={(option: string) => option.padStart(2, '0')}
                   />
