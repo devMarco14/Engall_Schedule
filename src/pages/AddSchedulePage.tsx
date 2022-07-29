@@ -1,10 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import AMPM from './addschedulepage/components/AMPM';
 import DayOfWeek from './addschedulepage/components/DayOfWeek';
 
 function AddSchedulePage() {
   const [timeToggle, setTimeToggle] = React.useState<string>('');
   const [selectDay, setSelectDay] = React.useState<string[]>([]);
+
+  const navigate = useNavigate();
 
   return (
     <section className="w-full px-10">
@@ -24,6 +27,9 @@ function AddSchedulePage() {
         <button
           className=" w-full mt-1 md:w-[15%] h-10 md:mx-9 md:mt-4 rounded-lg bg-buttonColor font-bold text-zinc-50"
           type="button"
+          onClick={() => {
+            navigate('/');
+          }}
         >
           Save
         </button>
