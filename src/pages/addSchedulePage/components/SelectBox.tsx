@@ -18,7 +18,12 @@ function SelectBox({
   className,
 }: SelectBoxProps) {
   const [isToggled, setToggle] = React.useState<boolean>(false);
+
   const handleToggle = () => setToggle((previous) => !previous);
+  const handleOptionClick = (option: string | number) => {
+    handleToggle();
+    onSelectOption(option);
+  };
 
   return (
     <section className={className}>
@@ -41,8 +46,7 @@ function SelectBox({
             <Option
               key={`${option}_${index}`}
               onClick={() => {
-                handleToggle();
-                onSelectOption(option);
+                handleOptionClick(option);
               }}
             >
               {formatOption ? formatOption(option.toString()) : option}

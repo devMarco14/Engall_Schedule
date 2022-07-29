@@ -19,8 +19,34 @@ function AddSchedulePage() {
     INITIAL_SELECTED_TIME,
   );
   const { onSubmitSchedule } = useScheduleForm();
-
   const navigate = useNavigate();
+
+  const handleSelectOption = (option: number, timeType: string) => {
+    setSelectedTime(({ startTime }) => ({
+      startTime: {
+        ...startTime,
+        [timeType]: option,
+        isAM: startTime.isAM,
+      },
+      endTime: {
+        ...getClassEndTime({
+          ...startTime,
+          [timeType]: option,
+        }),
+        isAM:
+          startTime.isAM === null
+            ? null
+            : shouldIsAMChange(
+                startTime.hour,
+                getClassEndTime({
+                  ...startTime,
+                  [timeType]: option,
+                }).hour,
+                startTime.isAM,
+              ),
+      },
+    }));
+  };
 
   console.log(selectedTime);
 
@@ -43,30 +69,9 @@ function AddSchedulePage() {
                         ? selectedTime.startTime.hour
                         : selectedTime.startTime.minute
                     }
-                    onSelectOption={(option: number) =>
-                      setSelectedTime(({ startTime }) => ({
-                        startTime: {
-                          ...startTime,
-                          [timeType]: option,
-                          isAM: startTime.isAM,
-                        },
-                        endTime: {
-                          ...getClassEndTime({
-                            ...startTime,
-                            [timeType]: option,
-                          }),
-                          isAM: shouldIsAMChange(
-                            startTime.hour,
-                            getClassEndTime({
-                              ...startTime,
-                              [timeType]: option,
-                            }).hour,
-                            startTime.isAM,
-                          ),
-                        },
-                        // 사용자가 am, pm 선택 안했을 때 기본값을 null로 줌
-                      }))
-                    }
+                    onSelectOption={(option: number) => {
+                      handleSelectOption(option, timeType);
+                    }}
                     formatOption={(option: string) => option.padStart(2, '0')}
                   />
                   <span
