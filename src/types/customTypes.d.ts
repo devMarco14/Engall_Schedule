@@ -8,14 +8,14 @@ export interface ActionType<T> {
 }
 
 export interface TimeObject {
-  hour: string;
-  minute: string;
+  hour: string | number;
+  minute: string | number;
   isAM: boolean;
 }
 
 export interface Schedule {
-  startTime: Time;
-  endTime: Time;
+  startTime: TimeObject;
+  endTime: TimeObject;
 }
 
 export interface ResponseSchedule {
