@@ -2,9 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Path from 'routes/Path';
-import { WEEK } from 'libs/utils/Constants';
+import { DAY_OF_WEEK } from 'libs/utils/Constants';
 import Dayslot from './components/Dayslot';
 import useWeekList from './hooks/useWeekList';
+
+interface DayInfo {
+  id: number;
+  item: string;
+}
 
 function SchedulePage() {
   const { state, dispatch } = useWeekList();
@@ -18,7 +23,7 @@ function SchedulePage() {
         throw new Error(err as string);
       }
     };
-    WEEK.forEach((day: string) => foo(day));
+    Object.values(DAY_OF_WEEK).forEach(({ item }: DayInfo) => foo(item));
   }, []);
 
   const weekListToDayslot = Object.keys(state).map(
