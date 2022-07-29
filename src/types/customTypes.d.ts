@@ -13,7 +13,12 @@ export interface TimeObject {
   isAM: boolean;
 }
 
-export interface DayObject {
+export interface Schedule {
+  startTime: Time;
+  endTime: Time;
+}
+
+export interface ResponseSchedule {
   id: string;
   startTime: TimeObject;
   endTime: TimeObject;

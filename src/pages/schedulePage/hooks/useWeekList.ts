@@ -1,5 +1,9 @@
 import React from 'react';
-import { StringIndexedObject, ActionType, DayObject } from 'types/customTypes';
+import {
+  StringIndexedObject,
+  ActionType,
+  ResponseSchedule,
+} from 'types/customTypes';
 
 interface WeekStates<T> extends StringIndexedObject<T> {
   Monday: T;
@@ -12,10 +16,10 @@ interface WeekStates<T> extends StringIndexedObject<T> {
 }
 
 const reducer = (
-  state: StringIndexedObject<DayObject[]>,
-  action: ActionType<DayObject[]>,
+  state: StringIndexedObject<ResponseSchedule[]>,
+  action: ActionType<ResponseSchedule[]>,
 ) => {
-  let result: StringIndexedObject<DayObject[]>;
+  let result: StringIndexedObject<ResponseSchedule[]>;
   switch (action.type) {
     case 'MONDAY':
       result = {
@@ -73,7 +77,7 @@ const reducer = (
   return result;
 };
 
-const weekStates: WeekStates<DayObject[]> = {
+const weekStates: WeekStates<ResponseSchedule[]> = {
   Monday: [],
   Tuesday: [],
   Wednesday: [],

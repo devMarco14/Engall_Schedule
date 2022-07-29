@@ -6,7 +6,7 @@ import {
 } from 'libs/utils/Constants';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Schedule } from 'types/schedule';
+import { Schedule } from 'types/customTypes';
 import AMPM from './components/AMPM';
 import DayOfWeek from './components/DayOfWeek';
 import SelectBox from './components/SelectBox';
@@ -19,10 +19,7 @@ function AddSchedulePage() {
     INITIAL_SELECTED_TIME,
   );
   const { onSubmitSchedule } = useScheduleForm();
-
   const navigate = useNavigate();
-
-  console.log(selectedTime);
 
   return (
     <section className="w-full px-10">

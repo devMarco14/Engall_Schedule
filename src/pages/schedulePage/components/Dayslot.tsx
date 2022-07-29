@@ -1,10 +1,10 @@
 import React from 'react';
-import { DayObject } from 'types/customTypes';
+import { ResponseSchedule } from 'types/customTypes';
 import Timeslot from './Timeslot';
 
 interface DayslotProps {
   day: string;
-  timeList: DayObject[];
+  timeList: ResponseSchedule[];
   onChangeCheckData: () => void;
 }
 
@@ -16,7 +16,7 @@ export default function Dayslot({
   const [isSpread, setSpread] = React.useState<boolean>(false);
 
   const timeListToTimeslot = Object.values(timeList).map(
-    (dayObject: DayObject, index: number) => {
+    (dayObject: ResponseSchedule, index: number) => {
       return (
         <Timeslot
           isSpread={isSpread}

@@ -1,10 +1,11 @@
+/* eslint-disable no-alert */
 import useDeleteSchedule from 'hooks/useDeleteSchedule';
 import React from 'react';
-import { DayObject } from 'types/customTypes';
+import { ResponseSchedule } from 'types/customTypes';
 
 interface TimeslotProps {
   isSpread: boolean;
-  dayObject: DayObject;
+  dayObject: ResponseSchedule;
   day: string;
   onChangeCheckData: () => void;
 }
