@@ -1,6 +1,7 @@
 export interface Time {
   hour: number;
   minute: number;
+  isAM: boolean | null;
 }
 
 export interface RequestSchedule {
@@ -13,5 +14,4 @@ export interface RequestSchedule {
 export interface Schedule {
   startTime: Time;
   endTime: Time;
-  isAM: boolean | null;
 }
