@@ -19,7 +19,7 @@ interface TimeType {
     hour: number;
     minute: number;
   };
-  isAM?: boolean;
+  isAM?: boolean | null;
 }
 
 function AddSchedulePage() {
@@ -40,13 +40,13 @@ function AddSchedulePage() {
       <article className="border border-solid border-gray-200 p-7 bg-zinc-50  text-[16px] font-bold">
         <div className="md:flex md:items-center">
           <div className="md:flex md:w-[10%] mb-2">Start time</div>
-          <div className="flex mr-2">
-            <section className="flex items-center font-normal">
+          <div className="flex w-full md:mr-2 md:w-[150px]">
+            <section className="flex justify-between items-center font-normal w-full">
               {['hour', 'minute'].map((timeType) => (
                 <React.Fragment key={`container_${timeType}`}>
                   <SelectBox
                     key={`timeType_${timeType}`}
-                    className="bg-zinc-50 h-12 w-20 border border-solid border-gray-300 text-center z-10"
+                    className="bg-zinc-50 h-12 min-w-20 w-full border border-solid border-gray-300 text-center z-10"
                     optionList={timeType === 'hour' ? HOUR_LIST : MINUTE_LIST}
                     selectedOption={
                       timeType === 'hour'
@@ -62,8 +62,8 @@ function AddSchedulePage() {
                             [timeType]: option,
                           }),
                         },
-                        // 사용자가 am, pm 선택 안했을 때 기본값을 true로 정함
-                        isAM: isAM || true,
+                        // 사용자가 am, pm 선택 안했을 때 기본값을 null로 줌
+                        isAM: isAM || null,
                       }))
                     }
                     formatOption={(option: string) => option.padStart(2, '0')}
