@@ -140,7 +140,7 @@ export const getClassEndTime = (startTime: { hour: number; minute: number }) => 
     return { hour: startTime.hour, minute: endMinute };
 };
  ```
- - 시간을 받아올 때 시간순으로 나오지 않아 시간순으로 받아 올 로직 추가
+ - 시간을 받아올 때 시간순으로 나오지 않아 시간순으로 받아 오는 sort() 로직 추가
 ```
  // 변경 전 코드: { startTime: {hour, minute, isAM}, endTime: {hour, minute, isAM} } 형태의 객체를 원소로 하는 배열 timeList를
 // 시간 표시 컴포넌트인 Timeslot에 그대로 전달해 데이터가 추가된 순으로 시간표를 표시함
