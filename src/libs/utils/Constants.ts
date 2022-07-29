@@ -1,4 +1,5 @@
 import { getIntervalArray } from 'pages/addschedulepage/utils';
+import { Schedule } from 'types/schedule';
 
 export const WEEK = [
   'Monday',
@@ -27,9 +28,10 @@ export const AM_PM = [
 
 export const CLASS_DURATION = 40;
 
-export const INITIAL_SELECTED_TIME = {
+export const INITIAL_SELECTED_TIME: Schedule = {
   startTime: { hour: 0, minute: 0 },
   endTime: { hour: 0, minute: 0 },
+  isAM: null,
 };
 
 export const HOUR_LIST = getIntervalArray(12, 1, false);

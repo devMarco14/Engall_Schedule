@@ -1,3 +1,4 @@
+import useScheduleForm from 'hooks/useScheduleForm';
 import {
   HOUR_LIST,
   INITIAL_SELECTED_TIME,
@@ -5,32 +6,19 @@ import {
 } from 'libs/utils/Constants';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Schedule } from 'types/schedule';
 import AMPM from './components/AMPM';
 import DayOfWeek from './components/DayOfWeek';
 import SelectBox from './components/SelectBox';
 import { getClassEndTime } from './utils';
 
-interface TimeType {
-  startTime: {
-    hour: number;
-    minute: number;
-  };
-  endTime: {
-    hour: number;
-    minute: number;
-  };
-  isAM?: boolean | null;
-}
-
 function AddSchedulePage() {
   const [timeToggle, setTimeToggle] = React.useState<string>('');
   const [selectDay, setSelectDay] = React.useState<string[]>([]);
-  const [selectedTime, setSelectedTime] = React.useState<TimeType>(
+  const [selectedTime, setSelectedTime] = React.useState<Schedule>(
     INITIAL_SELECTED_TIME,
   );
-
-  // 수업 시작 시간 선택할 때 마다 변경되는 데이터 확인 가능
-  console.log(selectedTime);
+  const { onSubmitSchedule } = useScheduleForm();
 
   const navigate = useNavigate();
 
@@ -84,7 +72,7 @@ function AddSchedulePage() {
             timeToggle={timeToggle}
             setTimeToggle={(value: string) => {
               setTimeToggle(value);
-              setSelectedTime(({ startTime, endTime }: TimeType) => ({
+              setSelectedTime(({ startTime, endTime }: Schedule) => ({
                 startTime: { ...startTime },
                 endTime: { ...endTime },
                 isAM: value === 'AM',
@@ -102,6 +90,7 @@ function AddSchedulePage() {
           className=" w-full mt-1 md:w-[15%] h-10 md:mx-9 md:mt-4 rounded-lg bg-buttonColor font-bold text-zinc-50"
           type="button"
           onClick={() => {
+            onSubmitSchedule(selectDay, selectedTime);
             navigate('/');
           }}
         >
