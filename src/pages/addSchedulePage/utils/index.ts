@@ -20,7 +20,10 @@ export const getClassEndTime = (startTime: {
 
   if (endMinute >= 60) {
     const endHour = Number(startTime.hour) + 1;
-    return { hour: endHour > 12 ? 1 : endHour, minute: endMinute % 60 };
+    return {
+      hour: endHour > 12 ? '01' : String(endHour).padStart(2, '0'),
+      minute: String(endMinute % 60).padStart(2, '0'),
+    };
   }
   return { hour: startTime.hour, minute: endMinute };
 };

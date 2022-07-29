@@ -19,9 +19,13 @@ export const AM_PM = [
 export const CLASS_DURATION = 40;
 
 export const INITIAL_SELECTED_TIME: Schedule = {
-  startTime: { hour: 0, minute: 0, isAM: true },
-  endTime: { hour: 0, minute: 0, isAM: true },
+  startTime: { hour: '00', minute: '00', isAM: true },
+  endTime: { hour: '00', minute: '00', isAM: true },
 };
 
-export const HOUR_LIST = getIntervalArray(12, 1, false);
-export const MINUTE_LIST = getIntervalArray(12, 5, true);
+export const HOUR_LIST = getIntervalArray(12, 1, false).map((value: number) =>
+  String(value).padStart(2, '0'),
+);
+export const MINUTE_LIST = getIntervalArray(12, 5, true).map((value: number) =>
+  String(value).padStart(2, '0'),
+);

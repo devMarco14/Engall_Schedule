@@ -25,7 +25,7 @@ function AddSchedulePage() {
     selectedTime.startTime.hour === 0 ||
     selectDay.length <= 0;
 
-  const onSelectSchedule = (selectedSchedule: number, timeType: string) => {
+  const onSelectSchedule = (selectedSchedule: string, timeType: string) => {
     setSelectedTime(({ startTime }): any => {
       const endTime = getClassEndTime({
         ...startTime,
@@ -50,6 +50,10 @@ function AddSchedulePage() {
     });
   };
 
+  React.useEffect(() => {
+    console.log(selectedTime);
+  }, [selectedTime]);
+
   return (
     <section className="w-full px-10">
       <h1 className="my-10 text-xl font-bold">Add class schedule</h1>
@@ -69,7 +73,7 @@ function AddSchedulePage() {
                         ? selectedTime.startTime.hour
                         : selectedTime.startTime.minute
                     }
-                    onSelectOption={(option: number) => {
+                    onSelectOption={(option: string) => {
                       onSelectSchedule(option, timeType);
                     }}
                     formatOption={(option: string) => option.padStart(2, '0')}
@@ -117,8 +121,23 @@ function AddSchedulePage() {
           type="button"
           disabled={disabledCondition}
           onClick={() => {
-            onSubmitSchedule(selectDay, selectedTime);
-            navigate('/');
+            const foo = async () => {
+              try {
+                const response = await onSubmitSchedule(
+                  selectDay,
+                  selectedTime,
+                );
+                if (response) {
+                  alert('Schedule saved!');
+                  navigate('/');
+                } else {
+                  alert('Current schedule is overlapped!');
+                }
+              } catch (error) {
+                throw new Error(error as string);
+              }
+            };
+            foo();
           }}
         >
           Save

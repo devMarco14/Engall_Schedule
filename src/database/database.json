@@ -11,7 +11,8 @@
         "hour": "10",
         "minute": "50",
         "isAM": true
-      }
+      },
+      "isAM": true
     }
   ],
   "Tuesday": [
@@ -26,31 +27,33 @@
         "hour": "10",
         "minute": "50",
         "isAM": true
-      }
+      },
+      "isAM": true
     },
     {
       "id": 842,
       "startTime": {
-        "hour": "02",
-        "minute": "00",
+        "hour": 2,
+        "minute": 0,
         "isAM": false
       },
       "endTime": {
-        "hour": "02",
-        "minute": "40",
+        "hour": 2,
+        "minute": 40,
         "isAM": false
-      }
+      },
+      "isAM": false
     },
     {
       "id": 9362,
       "startTime": {
-        "hour": "01",
-        "minute": "05",
+        "hour": 1,
+        "minute": 5,
         "isAM": true
       },
       "endTime": {
-        "hour": "01",
-        "minute": "45",
+        "hour": 1,
+        "minute": 45,
         "isAM": true
       }
     }
@@ -67,7 +70,8 @@
         "hour": "10",
         "minute": "50",
         "isAM": true
-      }
+      },
+      "isAM": true
     }
   ],
   "Thursday": [
@@ -82,7 +86,8 @@
         "hour": "10",
         "minute": "50",
         "isAM": true
-      }
+      },
+      "isAM": true
     }
   ],
   "Friday": [
@@ -97,7 +102,8 @@
         "hour": "10",
         "minute": "50",
         "isAM": true
-      }
+      },
+      "isAM": true
     }
   ],
   "Saturday": [
@@ -112,18 +118,19 @@
         "hour": "10",
         "minute": "50",
         "isAM": true
-      }
+      },
+      "isAM": true
     },
     {
       "id": 1158,
       "startTime": {
-        "hour": "10",
-        "minute": "05",
+        "hour": 10,
+        "minute": 5,
         "isAM": false
       },
       "endTime": {
-        "hour": "10",
-        "minute": "45",
+        "hour": 10,
+        "minute": 45,
         "isAM": false
       }
     }
@@ -140,18 +147,19 @@
         "hour": "10",
         "minute": "50",
         "isAM": true
-      }
+      },
+      "isAM": true
     },
     {
       "id": 1974,
       "startTime": {
-        "hour": "10",
-        "minute": "05",
+        "hour": 10,
+        "minute": 5,
         "isAM": false
       },
       "endTime": {
-        "hour": "10",
-        "minute": "45",
+        "hour": 10,
+        "minute": 45,
         "isAM": false
       }
     }
