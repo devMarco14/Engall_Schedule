@@ -10,7 +10,7 @@ import { Schedule } from 'types/schedule';
 import AMPM from './components/AMPM';
 import DayOfWeek from './components/DayOfWeek';
 import SelectBox from './components/SelectBox';
-import { getClassEndTime } from './utils';
+import { getClassEndTime, shouldIsAMChange } from './utils/index';
 
 function AddSchedulePage() {
   const [timeToggle, setTimeToggle] = React.useState<string>('');
@@ -21,6 +21,8 @@ function AddSchedulePage() {
   const { onSubmitSchedule } = useScheduleForm();
 
   const navigate = useNavigate();
+
+  console.log(selectedTime);
 
   return (
     <section className="w-full px-10">
@@ -42,16 +44,27 @@ function AddSchedulePage() {
                         : selectedTime.startTime.minute
                     }
                     onSelectOption={(option: number) =>
-                      setSelectedTime(({ startTime, isAM }) => ({
-                        startTime: { ...startTime, [timeType]: option },
+                      setSelectedTime(({ startTime }) => ({
+                        startTime: {
+                          ...startTime,
+                          [timeType]: option,
+                          isAM: startTime.isAM,
+                        },
                         endTime: {
                           ...getClassEndTime({
                             ...startTime,
                             [timeType]: option,
                           }),
+                          isAM: shouldIsAMChange(
+                            startTime.hour,
+                            getClassEndTime({
+                              ...startTime,
+                              [timeType]: option,
+                            }).hour,
+                            startTime.isAM,
+                          ),
                         },
                         // 사용자가 am, pm 선택 안했을 때 기본값을 null로 줌
-                        isAM: isAM || null,
                       }))
                     }
                     formatOption={(option: string) => option.padStart(2, '0')}
@@ -73,9 +86,15 @@ function AddSchedulePage() {
             setTimeToggle={(value: string) => {
               setTimeToggle(value);
               setSelectedTime(({ startTime, endTime }: Schedule) => ({
-                startTime: { ...startTime },
-                endTime: { ...endTime },
-                isAM: value === 'AM',
+                startTime: { ...startTime, isAM: value === 'AM' },
+                endTime: {
+                  ...endTime,
+                  isAM: shouldIsAMChange(
+                    startTime.hour,
+                    endTime.hour,
+                    value === 'AM',
+                  ),
+                },
               }));
             }}
           />

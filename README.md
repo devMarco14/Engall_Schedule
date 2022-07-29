@@ -23,21 +23,68 @@
 <br />
 
 ## **3. 프로젝트 소개**
+![스크린샷 2022-07-29 오후 5 02 53](https://user-images.githubusercontent.com/99126860/181713633-906b0a99-975c-4f6d-83e5-502f21bf17a2.png)
+![스크린샷 2022-07-29 오후 5 02 34](https://user-images.githubusercontent.com/99126860/181713708-784826b7-7df3-4e3b-8a3f-5916efc923b1.png)
+![스크린샷 2022-07-29 오후 5 01 30](https://user-images.githubusercontent.com/99126860/181713726-cebd9d91-e2c1-4ba6-9f4a-22f8607cbb0b.png)
+![스크린샷 2022-07-29 오후 5 02 10](https://user-images.githubusercontent.com/99126860/181713736-4fc5bc58-4ec6-4ae8-88df-10f556a1ac6b.png)
 
-![engall](https://user-images.githubusercontent.com/99126860/181699558-f3476ca7-eda0-489a-bd1a-be5bfa681ba9.jpg)
 
 <br />
 
 ## **4. 프로젝트 구조**
 
 ```
-
+📦src
+ ┣ 📂asstes
+ ┃ ┗ 📂imgs
+ ┃ ┃ ┣ 📜engall.png
+ ┃ ┃ ┗ 📜index.ts
+ ┣ 📂components
+ ┃ ┗ 📜Header.tsx
+ ┣ 📂database
+ ┃ ┗ 📜database.json
+ ┣ 📂hooks
+ ┃ ┣ 📜httpRequest.ts
+ ┃ ┗ 📜useScheduleForm.ts
+ ┣ 📂libs
+ ┃ ┣ 📂api
+ ┃ ┃ ┗ 📜schedule.ts
+ ┃ ┗ 📂utils
+ ┃ ┃ ┗ 📜Constants.ts
+ ┣ 📂pages
+ ┃ ┣ 📂addSchedulePage
+ ┃ ┃ ┣ 📂components
+ ┃ ┃ ┃ ┣ 📜AMPM.tsx
+ ┃ ┃ ┃ ┣ 📜DayOfWeek.tsx
+ ┃ ┃ ┃ ┣ 📜Option.tsx
+ ┃ ┃ ┃ ┗ 📜SelectBox.tsx
+ ┃ ┃ ┣ 📂utils
+ ┃ ┃ ┃ ┗ 📜index.ts
+ ┃ ┃ ┗ 📜AddSchedulePage.tsx
+ ┃ ┗ 📂schedulePage
+ ┃ ┃ ┣ 📂components
+ ┃ ┃ ┃ ┣ 📜Dayslot.tsx
+ ┃ ┃ ┃ ┗ 📜Timeslot.tsx
+ ┃ ┃ ┣ 📂hooks
+ ┃ ┃ ┃ ┗ 📜useWeekList.ts
+ ┃ ┃ ┗ 📜SchedulePage.tsx
+ ┣ 📂routes
+ ┃ ┣ 📜Path.ts
+ ┃ ┗ 📜Routing.tsx
+ ┣ 📂types
+ ┃ ┣ 📜customTypes.d.ts
+ ┃ ┣ 📜imgges.d.ts
+ ┃ ┗ 📜schedule.d.ts
+ ┣ 📜App.css
+ ┣ 📜App.tsx
+ ┣ 📜index.css
+ ┗ 📜index.tsx
 ```
 
 <br />
 
 ## **5. 컨벤션**
-
+### # [ESLint, Airbnb세팅] 
 ### # 협업을 위한 git 커밋 컨벤션 설정
 
 | 커밋명   | 내용                                                   |
