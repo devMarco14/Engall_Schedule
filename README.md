@@ -127,7 +127,8 @@ export const getClassEndTime = (startTime: { hour: number; minute: number }) => 
     }
     return { hour: startTime.hour, minute: endMinute };
 };
-
+```
+```
 // 12시 40분 시작 1시 20분 종료 로직
 export const getClassEndTime = (startTime: { hour: number; minute: number }) => {
     const endMinute = startTime.minute + CLASS_DURATION;
@@ -138,8 +139,100 @@ export const getClassEndTime = (startTime: { hour: number; minute: number }) => 
     }
     return { hour: startTime.hour, minute: endMinute };
 };
- ```   
-
+ ```
+ - 시간을 받아올 때 시간순으로 나오지 않아 시간순으로 받아 오는 sort() 로직 추가
+```
+ // 변경 전 코드: { startTime: {hour, minute, isAM}, endTime: {hour, minute, isAM} } 형태의 객체를 원소로 하는 배열 timeList를
+// 시간 표시 컴포넌트인 Timeslot에 그대로 전달해 데이터가 추가된 순으로 시간표를 표시함
+export default function Dayslot({ day, timeList }: DayslotProps) {
+  const [isSpread, setSpread] = React.useState<boolean>(false);
+  const timeListToTimeslot = Object.values(timeList).map(
+    (dayObject: DayObject, index: number) => {
+      return (
+        <Timeslot
+          isSpread={isSpread}
+          dayObject={dayObject}
+          key={`${day[0]}_${index}`}
+        />
+      );
+    },
+  );
+```
+```
+ // 변경 후 코드: sort()를 추가해 오전/오후 여부, 시간에 따라 시간표를 오름차순으로 정렬함
+// handleSort는 sort()에 전달하기 위한 콜백 함수임
+export default function Dayslot({ day, timeList }: DayslotProps) {
+  const [isSpread, setSpread] = React.useState<boolean>(false);
+  const timeListToTimeslot = Object.values(timeList)
+    .sort(handleSort) // 하단 참조
+    .map((dayObject: DayObject, index: number) => {
+      return (
+        <Timeslot
+          isSpread={isSpread}
+          dayObject={dayObject}
+          key={`${day[0]}_${index}`}
+        />
+      );
+    });
+ 
+ export const handleSort = (previousTime: DayObject, nextTime: DayObject) => {
+  const { startTime: aStart, endTime: aEnd } = previousTime;
+  const { startTime: bStart, endTime: bEnd } = nextTime;
+  let result = 1;
+  switch (true) {
+    case (aStart.isAM && aEnd.isAM && !bStart.isAM && !bEnd.isAM) ||
+      (aStart.isAM && aEnd.isAM && bStart.isAM && !bEnd.isAM) ||
+      (aStart.isAM && aEnd.isAM && !bStart.isAM && bEnd.isAM) ||
+      (aStart.isAM && !aEnd.isAM && !bStart.isAM && !bEnd.isAM) ||
+      (aStart.isAM && !aEnd.isAM && !bStart.isAM && bEnd.isAM) ||
+      (!aStart.isAM && !aEnd.isAM && !bStart.isAM && bEnd.isAM):
+      result = -1;
+      break;
+  case (aStart.isAM && !aEnd.isAM && bStart.isAM && bEnd.isAM) ||
+      (!aStart.isAM && aEnd.isAM && !bStart.isAM && !bEnd.isAM) ||
+      (!aStart.isAM && aEnd.isAM && bStart.isAM && !bEnd.isAM) ||
+      (!aStart.isAM && aEnd.isAM && bStart.isAM && bEnd.isAM) ||
+      (!aStart.isAM && !aEnd.isAM && bStart.isAM && !bEnd.isAM) ||
+      (!aStart.isAM && !aEnd.isAM && bStart.isAM && bEnd.isAM):
+      result = 1;
+      break;
+     case (aStart.isAM && aEnd.isAM && bStart.isAM && bEnd.isAM) ||
+      (aStart.isAM && !aEnd.isAM && bStart.isAM && !bEnd.isAM) ||
+      (!aStart.isAM && aEnd.isAM && !bStart.isAM && bEnd.isAM) ||
+      (!aStart.isAM && !aEnd.isAM && !bStart.isAM && !bEnd.isAM):
+      switch (true) {
+        case aStart.hour < bStart.hour:
+          result = -1;
+          break;
+        case aStart.hour > bStart.hour:
+          result = 1;
+          break;
+        case aStart.hour === bStart.hour:
+          if (aStart.minute < bStart.minute) result = -1;
+          else if (aStart.minute > bStart.minute) result = 1;
+          break;
+        default:
+          throw new Error('Error! Schedule minute overlapped!');
+      }
+      break;
+    default:
+      throw new Error('Error! Unexpected schedule input');
+  }
+  return result;
+};
+ 
+``` 
+  - handleSort
+    1. 첫 번째 케이스: 오전/오후 여부를 비교해 previousTime을 nextTime보다 선행하여 정렬시킴
+    2. 두 번째 케이스: 오전/오후 여부를 비교해 previousTime을 nextTime의 후순위로 정렬시킴
+    3. 세 번째 케이스: previousTime과 nextTime이 동일한 시간대로 분류되는 경우, 시작 시간을 비교해 정렬시킴
+      3-1. previousTime의 시작 시간이 nextTime의 시작 시간보다 빠를 경우 선행하여 정렬시킴<br />
+      3-2. previousTime의 시작 시간이 nextTime의 시작 시간보다 느릴 경우 후순위로 정렬시킴<br />
+      3-3. previousTime과 nextTime의 시작 시간이 동일할 경우<br />
+      3-3-1. previousTime의 시작 분이 nextTime의 시작 분보다 빠를 경우 선행하여 정렬시킴<br />
+      3-3-2. previousTime의 시작 분이 nextTime의 시작 분보다 느릴 경우 후순위로 정렬시킴<br />
+      3-3-3. 두 시간대의 시작 분이 일치하는 경우는 중복이 발생한 것이므로 예외처리함
+    4. default: 만약의 경우를 대비해 예외 처리함
 <br />
 
 ## **8. 시간이 더 있으면 넣고 싶었던 기능**

@@ -6,9 +6,14 @@ import { handleSort } from '../utils';
 interface DayslotProps {
   day: string;
   timeList: DayObject[];
+  onChangeCheckData: () => void;
 }
 
-export default function Dayslot({ day, timeList }: DayslotProps) {
+export default function Dayslot({
+  day,
+  timeList,
+  onChangeCheckData,
+}: DayslotProps) {
   const [isSpread, setSpread] = React.useState<boolean>(false);
   const timeListToTimeslot = Object.values(timeList)
     .sort(handleSort)
@@ -19,6 +24,7 @@ export default function Dayslot({ day, timeList }: DayslotProps) {
           day={day}
           dayObject={dayObject}
           key={`${day[0]}_${index}`}
+          onChangeCheckData={onChangeCheckData}
         />
       );
     });

@@ -14,7 +14,7 @@ export interface TimeObject {
 }
 
 export interface DayObject {
-  id: string | number;
+  id: string;
   startTime: TimeObject;
   endTime: TimeObject;
 }

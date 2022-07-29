@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Path from 'routes/Path';
 import { getSchedulesAPI } from 'libs/api/schedule';
@@ -13,7 +13,10 @@ interface DayInfo {
 
 function SchedulePage() {
   const { state, dispatch } = useWeekList();
-
+  const [checkData, setCheckData] = useState(true);
+  const onChangeCheckData = () => {
+    setCheckData((prev) => !prev);
+  };
   React.useEffect(() => {
     const getResponse = async (endPoint: string) => {
       try {
@@ -33,7 +36,12 @@ function SchedulePage() {
       let result;
       if (state[key].length > 0) {
         result = (
-          <Dayslot day={key} timeList={state[key]} key={`${key}_${index}`} />
+          <Dayslot
+            day={key}
+            timeList={state[key]}
+            onChangeCheckData={onChangeCheckData}
+            key={`${key}_${index}`}
+          />
         );
       }
       return result;
