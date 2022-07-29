@@ -6,6 +6,7 @@ export const WEEK = [
   'Friday',
   'Saturday',
   'Sunday',
+];
 
 export const DAY_OF_WEEK = [
   { id: 1, item: 'Monday' },
