@@ -8,7 +8,7 @@ export const postSchedulesAPI = async (
   body: ResponseSchedule,
 ) => {
   const response = await request.post(`/${weekday}`, body);
-  return response.data;
+  return response;
 };
 
 export const getSchedulesAPI = async (weekday: string) => {
