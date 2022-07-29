@@ -16,6 +16,7 @@ export default function Dayslot({ day, timeList }: DayslotProps) {
       return (
         <Timeslot
           isSpread={isSpread}
+          day={day}
           dayObject={dayObject}
           key={`${day[0]}_${index}`}
         />
