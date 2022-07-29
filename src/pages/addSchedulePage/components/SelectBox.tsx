@@ -24,7 +24,9 @@ function SelectBox({
     <section className={className}>
       <button
         type="button"
-        className="flex justify-evenly w-full mx-auto p-4"
+        className={`flex justify-evenly w-full mx-auto p-4 ${
+          isToggled ? null : 'shadow-md shadow-gray-500/50'
+        }`}
         onClick={handleToggle}
       >
         {formatOption
