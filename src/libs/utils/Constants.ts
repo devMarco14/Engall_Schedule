@@ -1,4 +1,4 @@
-import { getIntervalArray } from 'pages/addschedulepage/utils';
+import { getIntervalArray } from 'pages/addSchedulePage/utils';
 import { Schedule } from 'types/customTypes';
 
 export const DAY_OF_WEEK = [

@@ -1,4 +1,4 @@
-import { Schedule } from 'types/customTypes';
+import { Schedule, ResponseSchedule } from 'types/customTypes';
 
 export const handleSort = (previousTime: Schedule, nextTime: Schedule) => {
   const { startTime: aStart, endTime: aEnd } = previousTime;
@@ -43,5 +43,23 @@ export const handleSort = (previousTime: Schedule, nextTime: Schedule) => {
     default:
       throw new Error('Error! Unexpected schedule input');
   }
+  return result;
+};
+
+export const filterOverlap = (list: ResponseSchedule[]) => {
+  const referenceArray: string[] = [];
+  const result = Object.values(list).reduce(
+    (resultArray: ResponseSchedule[], currentObject: ResponseSchedule) => {
+      const currentTime = `${currentObject.startTime.hour}:${
+        currentObject.startTime.minute
+      } ${currentObject.startTime.isAM ? 'AM' : 'PM'}`;
+      if (!referenceArray.includes(currentTime)) {
+        referenceArray.push(currentTime);
+        resultArray.push(currentObject);
+      }
+      return resultArray;
+    },
+    [],
+  );
   return result;
 };

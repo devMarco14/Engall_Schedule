@@ -1,7 +1,7 @@
 import React from 'react';
 import { ResponseSchedule } from 'types/customTypes';
 import Timeslot from './Timeslot';
-import { handleSort } from '../utils';
+import { handleSort, filterOverlap } from '../utils';
 
 interface DayslotProps {
   day: string;
@@ -15,7 +15,7 @@ export default function Dayslot({
   onChangeCheckData,
 }: DayslotProps) {
   const [isSpread, setSpread] = React.useState<boolean>(false);
-  const timeListToTimeslot = Object.values(timeList)
+  const timeListToTimeslot = Object.values(filterOverlap(timeList))
     .sort(handleSort)
     .map((dayObject: ResponseSchedule, index: number) => {
       return (
