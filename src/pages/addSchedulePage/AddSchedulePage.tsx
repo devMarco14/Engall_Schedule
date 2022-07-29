@@ -55,7 +55,14 @@ function AddSchedulePage() {
                             ...startTime,
                             [timeType]: option,
                           }),
-                          isAM: startTime.isAM,
+                          isAM: shouldIsAMChange(
+                            startTime.hour,
+                            getClassEndTime({
+                              ...startTime,
+                              [timeType]: option,
+                            }).hour,
+                            startTime.isAM,
+                          ),
                         },
                         // 사용자가 am, pm 선택 안했을 때 기본값을 null로 줌
                       }))

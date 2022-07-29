@@ -25,7 +25,7 @@ export const getClassEndTime = (startTime: { hour: number; minute: number }) => 
 export const shouldIsAMChange = (
     startHour: number,
     endHour: number,
-    isAM: boolean,
+    isAM: boolean | null,
 ) => {
     if (startHour === 11 && endHour === 12) return !isAM;
     return isAM;
