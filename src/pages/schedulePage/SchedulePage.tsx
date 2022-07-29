@@ -21,13 +21,17 @@ function SchedulePage() {
     WEEK.forEach((day: string) => foo(day));
   }, []);
 
-  const weekListToDayslot = Object.keys(state).map((key: string) => {
-    let result;
-    if (state[key].length > 0) {
-      result = <Dayslot day={key} timeList={state[key]} />;
-    }
-    return result;
-  });
+  const weekListToDayslot = Object.keys(state).map(
+    (key: string, index: number) => {
+      let result;
+      if (state[key].length > 0) {
+        result = (
+          <Dayslot day={key} timeList={state[key]} key={`${key}_${index}`} />
+        );
+      }
+      return result;
+    },
+  );
 
   return (
     <main className="mx-7 bg-backgroundColor md:mx-0 lg:mx-7">

@@ -10,8 +10,14 @@ interface DayslotProps {
 export default function Dayslot({ day, timeList }: DayslotProps) {
   const [isSpread, setSpread] = React.useState<boolean>(false);
   const timeListToTimeslot = Object.values(timeList).map(
-    (dayObject: DayObject) => {
-      return <Timeslot isSpread={isSpread} dayObject={dayObject} />;
+    (dayObject: DayObject, index: number) => {
+      return (
+        <Timeslot
+          isSpread={isSpread}
+          dayObject={dayObject}
+          key={`${day[0]}_${index}`}
+        />
+      );
     },
   );
 
