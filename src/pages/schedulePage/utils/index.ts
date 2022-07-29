@@ -1,6 +1,6 @@
-import { DayObject } from 'types/customTypes';
+import { Schedule } from 'types/customTypes';
 
-export const handleSort = (previousTime: DayObject, nextTime: DayObject) => {
+export const handleSort = (previousTime: Schedule, nextTime: Schedule) => {
   const { startTime: aStart, endTime: aEnd } = previousTime;
   const { startTime: bStart, endTime: bEnd } = nextTime;
   let result = 1;

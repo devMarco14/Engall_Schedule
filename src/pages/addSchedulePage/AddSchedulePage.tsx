@@ -6,7 +6,7 @@ import {
 } from 'libs/utils/Constants';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Schedule } from 'types/schedule';
+import { Schedule } from 'types/customTypes';
 import AMPM from './components/AMPM';
 import DayOfWeek from './components/DayOfWeek';
 import SelectBox from './components/SelectBox';
@@ -20,9 +20,13 @@ function AddSchedulePage() {
   );
   const { onSubmitSchedule } = useScheduleForm();
   const navigate = useNavigate();
+  const disabledCondition =
+    selectedTime.startTime.isAM === null ||
+    selectedTime.startTime.hour === 0 ||
+    selectDay.length <= 0;
 
   const onSelectSchedule = (selectedSchedule: number, timeType: string) => {
-    setSelectedTime(({ startTime }) => {
+    setSelectedTime(({ startTime }): any => {
       const endTime = getClassEndTime({
         ...startTime,
         [timeType]: selectedSchedule,
@@ -107,8 +111,11 @@ function AddSchedulePage() {
       </article>
       <div className="md:w-full md:flex md:justify-end">
         <button
-          className=" w-full mt-1 md:w-[15%] h-10 md:mx-9 md:mt-4 rounded-lg bg-buttonColor font-bold text-zinc-50"
+          className={` w-full mt-1 md:w-[15%] h-10 md:mx-9 md:mt-4 rounded-lg ${
+            disabledCondition ? 'bg-gray-400' : 'bg-buttonColor'
+          } font-bold text-zinc-50`}
           type="button"
+          disabled={disabledCondition}
           onClick={() => {
             onSubmitSchedule(selectDay, selectedTime);
             navigate('/');
