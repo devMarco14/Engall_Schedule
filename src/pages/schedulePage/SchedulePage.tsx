@@ -35,11 +35,11 @@ function SchedulePage() {
 
   return (
     <main className="mx-7 bg-backgroundColor md:mx-0 lg:mx-7">
-      <section className="flex justify-between w-full my-7">
+      <section className="flex justify-between w-full my-7 px-7 lg:px-0">
         <h1 className="text-xl font-bold">Class schedule</h1>
         <Link
           to={Path.AddClassSchedule}
-          className="rounded-md p-2.5 pt-2 px-3.5 bg-buttonColor text-white"
+          className="flex jsutify-center items-center rounded-md p-2.5 pt-2 px-3.5 bg-buttonColor text-center text-white leading-5"
         >
           Add Class Schedule
         </Link>

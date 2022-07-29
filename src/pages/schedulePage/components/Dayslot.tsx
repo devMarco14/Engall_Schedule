@@ -27,7 +27,7 @@ export default function Dayslot({ day, timeList }: DayslotProps) {
 
   return (
     <article
-      className={`flex flex-col items-center z-10 h-full mb-5 rounded-lg shadow-md px-2 py-3 bg-zinc-50 md:mb-0 md:rounded-none md:shadow-none md:py-0 md:bg-transparent ${
+      className={`flex flex-col items-center z-10 h-full mb-5 rounded-lg shadow-md px-1 py-3 bg-zinc-50 md:mb-0 md:rounded-none md:shadow-none md:py-0 md:bg-transparent lg:px-2 ${
         isSpread
           ? 'animate-[spreadDayslot_1s_ease-in-out_forwards]'
           : 'animate-[foldingDayslot_1s_ease-in-out_backwards]'
