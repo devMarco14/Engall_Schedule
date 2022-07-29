@@ -14,8 +14,10 @@ export const getIntervalArray = (
 
 export const getClassEndTime = (startTime: { hour: number; minute: number }) => {
     const endMinute = startTime.minute + CLASS_DURATION;
+
     if (endMinute >= 60) {
-        return { hour: startTime.hour + 1, minute: endMinute % 60 };
+        const endHour = startTime.hour + 1;
+        return { hour: endHour > 12 ? 1 : endHour, minute: endMinute % 60 };
     }
     return { hour: startTime.hour, minute: endMinute };
 };
