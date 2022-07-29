@@ -20,7 +20,10 @@ function AddSchedulePage() {
   );
   const { onSubmitSchedule } = useScheduleForm();
   const navigate = useNavigate();
-
+  const disabledCondition =
+    selectedTime.startTime.isAM === null ||
+    selectedTime.startTime.hour === 0 ||
+    selectDay.length <= 0;
   return (
     <section className="w-full px-10">
       <h1 className="my-10 text-xl font-bold">Add class schedule</h1>
@@ -96,8 +99,11 @@ function AddSchedulePage() {
       </article>
       <div className="md:w-full md:flex md:justify-end">
         <button
-          className=" w-full mt-1 md:w-[15%] h-10 md:mx-9 md:mt-4 rounded-lg bg-buttonColor font-bold text-zinc-50"
+          className={` w-full mt-1 md:w-[15%] h-10 md:mx-9 md:mt-4 rounded-lg ${
+            disabledCondition ? 'bg-gray-400' : 'bg-buttonColor'
+          } font-bold text-zinc-50`}
           type="button"
+          disabled={disabledCondition}
           onClick={() => {
             onSubmitSchedule(selectDay, selectedTime);
             navigate('/');
