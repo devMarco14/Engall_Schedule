@@ -25,15 +25,6 @@ export const getClassEndTime = (startTime: {
   return { hour: startTime.hour, minute: endMinute };
 };
 
-export const shouldIsAMChange = (
-  startHour: string | number,
-  endHour: string | number,
-  isAM: boolean,
-) => {
-  if (startHour === 11 && endHour === 12) return !isAM;
-  return isAM;
-};
-
 export const getEndTimeIsAM = (
   startHour: string | number,
   endHour: string | number,
