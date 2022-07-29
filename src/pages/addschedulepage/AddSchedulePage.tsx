@@ -5,10 +5,10 @@ import {
 } from 'libs/utils/Constants';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import SelectBox from './components/SelectBox';
 import AMPM from './components/AMPM';
 import DayOfWeek from './components/DayOfWeek';
-import { getClassEndTime } from './utils/index';
+import SelectBox from './components/SelectBox';
+import { getClassEndTime } from './utils';
 
 interface TimeType {
   startTime: {

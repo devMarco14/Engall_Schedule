@@ -1,4 +1,4 @@
-import { getIntervalArray } from '../../pages/addSchedulePage/utils/index';
+import { getIntervalArray } from 'pages/addschedulepage/utils';
 
 export const WEEK = [
   'Monday',
