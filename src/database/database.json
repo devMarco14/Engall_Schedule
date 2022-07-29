@@ -37,18 +37,6 @@
         "minute": 40
       },
       "isAM": false
-    },
-    {
-      "id": 545,
-      "startTime": {
-        "hour": 1,
-        "minute": 5
-      },
-      "endTime": {
-        "hour": 1,
-        "minute": 45
-      },
-      "isAM": true
     }
   ],
   "Wednesday": [
@@ -79,18 +67,6 @@
         "isAM": true
       },
       "isAM": true
-    },
-    {
-      "id": 4253,
-      "startTime": {
-        "hour": 2,
-        "minute": 0
-      },
-      "endTime": {
-        "hour": 2,
-        "minute": 40
-      },
-      "isAM": false
     }
   ],
   "Friday": [
@@ -119,18 +95,6 @@
         "minute": "50"
       },
       "isAM": true
-    },
-    {
-      "id": 7747,
-      "startTime": {
-        "hour": 2,
-        "minute": 0
-      },
-      "endTime": {
-        "hour": 2,
-        "minute": 40
-      },
-      "isAM": false
     }
   ],
   "Sunday": [

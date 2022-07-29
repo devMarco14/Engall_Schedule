@@ -1,6 +1,5 @@
 /* eslint-disable array-callback-return */
 import { postSchedulesAPI } from 'libs/api/schedule';
-import { useNavigate } from 'react-router-dom';
 import { Schedule } from 'types/schedule';
 
 const useScheduleForm = () => {
