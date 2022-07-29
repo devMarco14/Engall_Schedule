@@ -10,7 +10,7 @@ import { Schedule } from 'types/schedule';
 import AMPM from './components/AMPM';
 import DayOfWeek from './components/DayOfWeek';
 import SelectBox from './components/SelectBox';
-import { getClassEndTime, shouldIsAMChange } from './utils/index';
+import { getClassEndTime, getEndTimeIsAM } from './utils/index';
 
 function AddSchedulePage() {
   const [timeToggle, setTimeToggle] = React.useState<string>('');
@@ -27,7 +27,7 @@ function AddSchedulePage() {
         ...startTime,
         [timeType]: selectedSchedule,
       });
-      const isEndTimeAM = shouldIsAMChange(
+      const isEndTimeAM = getEndTimeIsAM(
         startTime.hour,
         endTime.hour,
         startTime.isAM,
@@ -92,7 +92,7 @@ function AddSchedulePage() {
                 startTime: { ...startTime, isAM: value === 'AM' },
                 endTime: {
                   ...endTime,
-                  isAM: shouldIsAMChange(
+                  isAM: getEndTimeIsAM(
                     startTime.hour,
                     endTime.hour,
                     value === 'AM',

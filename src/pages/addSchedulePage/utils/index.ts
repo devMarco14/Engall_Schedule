@@ -22,7 +22,7 @@ export const getClassEndTime = (startTime: { hour: number; minute: number }) => 
     return { hour: startTime.hour, minute: endMinute };
 };
 
-export const shouldIsAMChange = (
+export const getEndTimeIsAM = (
     startHour: number,
     endHour: number,
     isAM: boolean | null,
