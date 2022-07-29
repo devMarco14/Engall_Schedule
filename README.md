@@ -138,7 +138,89 @@ export const getClassEndTime = (startTime: { hour: number; minute: number }) => 
     }
     return { hour: startTime.hour, minute: endMinute };
 };
- ```   
+ ```
+ - 시간을 받아올 때 시간순으로 나오지 않아 시간순으로 받아 올 로직 추가
+```
+ // 변경 전 코드: { startTime: {hour, minute, isAM}, endTime: {hour, minute, isAM} } 형태의 객체를 원소로 하는 배열 timeList를
+// 시간 표시 컴포넌트인 Timeslot에 그대로 전달해 데이터가 추가된 순으로 시간표를 표시함
+export default function Dayslot({ day, timeList }: DayslotProps) {
+  const [isSpread, setSpread] = React.useState<boolean>(false);
+  const timeListToTimeslot = Object.values(timeList).map(
+    (dayObject: DayObject, index: number) => {
+      return (
+        <Timeslot
+          isSpread={isSpread}
+          dayObject={dayObject}
+          key={`${day[0]}_${index}`}
+        />
+      );
+    },
+  );
+```
+```
+ // 변경 후 코드: sort()를 추가해 오전/오후 여부, 시간에 따라 시간표를 오름차순으로 정렬함
+// handleSort는 sort()에 전달하기 위한 콜백 함수임
+export default function Dayslot({ day, timeList }: DayslotProps) {
+  const [isSpread, setSpread] = React.useState<boolean>(false);
+  const timeListToTimeslot = Object.values(timeList)
+    .sort(handleSort) // 하단 참조
+    .map((dayObject: DayObject, index: number) => {
+      return (
+        <Timeslot
+          isSpread={isSpread}
+          dayObject={dayObject}
+          key={`${day[0]}_${index}`}
+        />
+      );
+    });
+ 
+ export const handleSort = (previousTime: DayObject, nextTime: DayObject) => {
+  const { startTime: aStart, endTime: aEnd } = previousTime;
+  const { startTime: bStart, endTime: bEnd } = nextTime;
+  let result = 1;
+  switch (true) {
+    case (aStart.isAM && aEnd.isAM && !bStart.isAM && !bEnd.isAM) ||
+      (aStart.isAM && aEnd.isAM && bStart.isAM && !bEnd.isAM) ||
+      (aStart.isAM && aEnd.isAM && !bStart.isAM && bEnd.isAM) ||
+      (aStart.isAM && !aEnd.isAM && !bStart.isAM && !bEnd.isAM) ||
+      (aStart.isAM && !aEnd.isAM && !bStart.isAM && bEnd.isAM) ||
+      (!aStart.isAM && !aEnd.isAM && !bStart.isAM && bEnd.isAM):
+      result = -1;
+      break;
+  case (aStart.isAM && !aEnd.isAM && bStart.isAM && bEnd.isAM) ||
+      (!aStart.isAM && aEnd.isAM && !bStart.isAM && !bEnd.isAM) ||
+      (!aStart.isAM && aEnd.isAM && bStart.isAM && !bEnd.isAM) ||
+      (!aStart.isAM && aEnd.isAM && bStart.isAM && bEnd.isAM) ||
+      (!aStart.isAM && !aEnd.isAM && bStart.isAM && !bEnd.isAM) ||
+      (!aStart.isAM && !aEnd.isAM && bStart.isAM && bEnd.isAM):
+      result = 1;
+      break;
+     case (aStart.isAM && aEnd.isAM && bStart.isAM && bEnd.isAM) ||
+      (aStart.isAM && !aEnd.isAM && bStart.isAM && !bEnd.isAM) ||
+      (!aStart.isAM && aEnd.isAM && !bStart.isAM && bEnd.isAM) ||
+      (!aStart.isAM && !aEnd.isAM && !bStart.isAM && !bEnd.isAM):
+      switch (true) {
+        case aStart.hour < bStart.hour:
+          result = -1;
+          break;
+        case aStart.hour > bStart.hour:
+          result = 1;
+          break;
+        case aStart.hour === bStart.hour:
+          if (aStart.minute < bStart.minute) result = -1;
+          else if (aStart.minute > bStart.minute) result = 1;
+          break;
+        default:
+          throw new Error('Error! Schedule minute overlapped!');
+      }
+      break;
+    default:
+      throw new Error('Error! Unexpected schedule input');
+  }
+  return result;
+};
+ 
+``` 
 
 <br />
 
