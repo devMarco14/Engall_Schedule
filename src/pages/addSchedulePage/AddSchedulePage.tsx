@@ -10,7 +10,7 @@ import { Schedule } from 'types/customTypes';
 import AMPM from './components/AMPM';
 import DayOfWeek from './components/DayOfWeek';
 import SelectBox from './components/SelectBox';
-import { getClassEndTime, shouldIsAMChange } from './utils/index';
+import { getClassEndTime, getEndTimeIsAM } from './utils/index';
 
 function AddSchedulePage() {
   const [timeToggle, setTimeToggle] = React.useState<string>('');
@@ -24,6 +24,32 @@ function AddSchedulePage() {
     selectedTime.startTime.isAM === null ||
     selectedTime.startTime.hour === 0 ||
     selectDay.length <= 0;
+
+  const onSelectSchedule = (selectedSchedule: number, timeType: string) => {
+    setSelectedTime(({ startTime }): any => {
+      const endTime = getClassEndTime({
+        ...startTime,
+        [timeType]: selectedSchedule,
+      });
+      const isEndTimeAM = getEndTimeIsAM(
+        startTime.hour,
+        endTime.hour,
+        startTime.isAM,
+      );
+
+      return {
+        startTime: {
+          ...startTime,
+          [timeType]: selectedSchedule,
+        },
+        endTime: {
+          ...endTime,
+          isAM: startTime.isAM === null ? null : isEndTimeAM,
+        },
+      };
+    });
+  };
+
   return (
     <section className="w-full px-10">
       <h1 className="my-10 text-xl font-bold">Add class schedule</h1>
@@ -43,23 +69,9 @@ function AddSchedulePage() {
                         ? selectedTime.startTime.hour
                         : selectedTime.startTime.minute
                     }
-                    onSelectOption={(option: number) =>
-                      setSelectedTime(({ startTime }) => ({
-                        startTime: {
-                          ...startTime,
-                          [timeType]: option,
-                          isAM: startTime.isAM,
-                        },
-                        endTime: {
-                          ...getClassEndTime({
-                            ...startTime,
-                            [timeType]: option,
-                          }),
-                          isAM: startTime.isAM,
-                        },
-                        // 사용자가 am, pm 선택 안했을 때 기본값을 null로 줌
-                      }))
-                    }
+                    onSelectOption={(option: number) => {
+                      onSelectSchedule(option, timeType);
+                    }}
                     formatOption={(option: string) => option.padStart(2, '0')}
                   />
                   <span
@@ -82,7 +94,7 @@ function AddSchedulePage() {
                 startTime: { ...startTime, isAM: value === 'AM' },
                 endTime: {
                   ...endTime,
-                  isAM: shouldIsAMChange(
+                  isAM: getEndTimeIsAM(
                     startTime.hour,
                     endTime.hour,
                     value === 'AM',

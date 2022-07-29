@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import Path from 'routes/Path';
-import { WEEK } from 'libs/utils/Constants';
-import { useState } from 'react';
+import { getSchedulesAPI } from 'libs/api/schedule';
+import { DAY_OF_WEEK } from 'libs/utils/Constants';
 import Dayslot from './components/Dayslot';
 import useWeekList from './hooks/useWeekList';
+
+interface DayInfo {
+  id: number;
+  item: string;
+}
 
 function SchedulePage() {
   const { state, dispatch } = useWeekList();
@@ -14,15 +18,17 @@ function SchedulePage() {
     setCheckData((prev) => !prev);
   };
   React.useEffect(() => {
-    const foo = async (endPoint: string) => {
+    const getResponse = async (endPoint: string) => {
       try {
-        const response = await axios.get(`http://localhost:8080/${endPoint}`);
-        dispatch({ type: endPoint.toUpperCase(), payload: response.data });
+        const response = await getSchedulesAPI(endPoint);
+        dispatch({ type: endPoint.toUpperCase(), payload: response });
       } catch (err) {
         throw new Error(err as string);
       }
     };
-    WEEK.forEach((day: string) => foo(day));
+    Object.values(DAY_OF_WEEK).forEach(({ item }: DayInfo) =>
+      getResponse(item),
+    );
   }, [checkData]);
 
   const weekListToDayslot = Object.keys(state).map(

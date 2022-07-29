@@ -33,3 +33,12 @@ export const shouldIsAMChange = (
   if (startHour === 11 && endHour === 12) return !isAM;
   return isAM;
 };
+
+export const getEndTimeIsAM = (
+  startHour: string | number,
+  endHour: string | number,
+  isAM: boolean,
+) => {
+  if (startHour === 11 && endHour === 12) return !isAM;
+  return isAM;
+};

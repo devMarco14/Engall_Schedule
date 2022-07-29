@@ -1,6 +1,7 @@
 import React from 'react';
 import { ResponseSchedule } from 'types/customTypes';
 import Timeslot from './Timeslot';
+import { handleSort } from '../utils';
 
 interface DayslotProps {
   day: string;
@@ -14,20 +15,19 @@ export default function Dayslot({
   onChangeCheckData,
 }: DayslotProps) {
   const [isSpread, setSpread] = React.useState<boolean>(false);
-
-  const timeListToTimeslot = Object.values(timeList).map(
-    (dayObject: ResponseSchedule, index: number) => {
+  const timeListToTimeslot = Object.values(timeList)
+    .sort(handleSort)
+    .map((dayObject: ResponseSchedule, index: number) => {
       return (
         <Timeslot
           isSpread={isSpread}
+          day={day}
           dayObject={dayObject}
           key={`${day[0]}_${index}`}
-          day={day}
           onChangeCheckData={onChangeCheckData}
         />
       );
-    },
-  );
+    });
 
   function handleClick() {
     setSpread(!isSpread);
