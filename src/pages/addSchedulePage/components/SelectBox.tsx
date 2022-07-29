@@ -1,6 +1,6 @@
 import React from 'react';
-import Option from 'pages/addschedulepage/components/Option';
 import { TiArrowSortedDown as ArrowDownIcon } from 'react-icons/ti';
+import Option from './Option';
 
 interface SelectBoxProps {
   optionList: (string | number)[];
