@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import AMPM from './addschedulepage/components/AMPM';
-import DayOfWeek from './addschedulepage/components/DayOfWeek';
+import AMPM from './components/AMPM';
+import DayOfWeek from './components/DayOfWeek';
 
 function AddSchedulePage() {
   const [timeToggle, setTimeToggle] = React.useState<string>('');
