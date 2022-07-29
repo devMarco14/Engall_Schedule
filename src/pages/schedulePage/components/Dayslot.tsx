@@ -5,10 +5,16 @@ import Timeslot from './Timeslot';
 interface DayslotProps {
   day: string;
   timeList: DayObject[];
+  onChangeCheckData: () => void;
 }
 
-export default function Dayslot({ day, timeList }: DayslotProps) {
+export default function Dayslot({
+  day,
+  timeList,
+  onChangeCheckData,
+}: DayslotProps) {
   const [isSpread, setSpread] = React.useState<boolean>(false);
+
   const timeListToTimeslot = Object.values(timeList).map(
     (dayObject: DayObject, index: number) => {
       return (
@@ -16,6 +22,8 @@ export default function Dayslot({ day, timeList }: DayslotProps) {
           isSpread={isSpread}
           dayObject={dayObject}
           key={`${day[0]}_${index}`}
+          day={day}
+          onChangeCheckData={onChangeCheckData}
         />
       );
     },
