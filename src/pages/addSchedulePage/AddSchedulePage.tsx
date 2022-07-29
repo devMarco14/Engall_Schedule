@@ -46,8 +46,6 @@ function AddSchedulePage() {
     });
   };
 
-  console.log(selectedTime);
-
   return (
     <section className="w-full px-10">
       <h1 className="my-10 text-xl font-bold">Add class schedule</h1>
