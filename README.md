@@ -34,7 +34,51 @@
 ## **4. 프로젝트 구조**
 
 ```
-
+📦src
+ ┣ 📂asstes
+ ┃ ┗ 📂imgs
+ ┃ ┃ ┣ 📜engall.png
+ ┃ ┃ ┗ 📜index.ts
+ ┣ 📂components
+ ┃ ┗ 📜Header.tsx
+ ┣ 📂database
+ ┃ ┗ 📜database.json
+ ┣ 📂hooks
+ ┃ ┣ 📜httpRequest.ts
+ ┃ ┗ 📜useScheduleForm.ts
+ ┣ 📂libs
+ ┃ ┣ 📂api
+ ┃ ┃ ┗ 📜schedule.ts
+ ┃ ┗ 📂utils
+ ┃ ┃ ┗ 📜Constants.ts
+ ┣ 📂pages
+ ┃ ┣ 📂addSchedulePage
+ ┃ ┃ ┣ 📂components
+ ┃ ┃ ┃ ┣ 📜AMPM.tsx
+ ┃ ┃ ┃ ┣ 📜DayOfWeek.tsx
+ ┃ ┃ ┃ ┣ 📜Option.tsx
+ ┃ ┃ ┃ ┗ 📜SelectBox.tsx
+ ┃ ┃ ┣ 📂utils
+ ┃ ┃ ┃ ┗ 📜index.ts
+ ┃ ┃ ┗ 📜AddSchedulePage.tsx
+ ┃ ┗ 📂schedulePage
+ ┃ ┃ ┣ 📂components
+ ┃ ┃ ┃ ┣ 📜Dayslot.tsx
+ ┃ ┃ ┃ ┗ 📜Timeslot.tsx
+ ┃ ┃ ┣ 📂hooks
+ ┃ ┃ ┃ ┗ 📜useWeekList.ts
+ ┃ ┃ ┗ 📜SchedulePage.tsx
+ ┣ 📂routes
+ ┃ ┣ 📜Path.ts
+ ┃ ┗ 📜Routing.tsx
+ ┣ 📂types
+ ┃ ┣ 📜customTypes.d.ts
+ ┃ ┣ 📜imgges.d.ts
+ ┃ ┗ 📜schedule.d.ts
+ ┣ 📜App.css
+ ┣ 📜App.tsx
+ ┣ 📜index.css
+ ┗ 📜index.tsx
 ```
 
 <br />
