@@ -1,9 +1,12 @@
 import { HttpRequest } from 'hooks/httpRequest';
-import { Schedule } from 'types/schedule';
+import { RequestSchedule } from 'types/schedule';
 
 const request = new HttpRequest();
 
-export const postSchedulesAPI = async (weekday: string, body: Schedule) => {
+export const postSchedulesAPI = async (
+  weekday: string,
+  body: RequestSchedule,
+) => {
   const response = await request.post(`/${weekday}`, body);
   return response.data;
 };

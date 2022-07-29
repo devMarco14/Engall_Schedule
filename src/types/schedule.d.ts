@@ -1,11 +1,17 @@
 export interface Time {
-  hour: string;
-  minute: string;
-  isAM: boolean;
+  hour: number;
+  minute: number;
+}
+
+export interface RequestSchedule {
+  id: number;
+  startTime: Time;
+  endTime: Time;
+  isAM: boolean | null;
 }
 
 export interface Schedule {
-  id: string;
-  startTime: Date;
-  endTime: Date;
+  startTime: Time;
+  endTime: Time;
+  isAM: boolean | null;
 }
