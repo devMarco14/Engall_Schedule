@@ -127,7 +127,8 @@ export const getClassEndTime = (startTime: { hour: number; minute: number }) => 
     }
     return { hour: startTime.hour, minute: endMinute };
 };
-
+```
+```
 // 12시 40분 시작 1시 20분 종료 로직
 export const getClassEndTime = (startTime: { hour: number; minute: number }) => {
     const endMinute = startTime.minute + CLASS_DURATION;
