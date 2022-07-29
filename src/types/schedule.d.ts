@@ -6,6 +6,6 @@ export interface Time {
 
 export interface Schedule {
   id: string;
-  startTime: Time;
-  endTime: Time;
+  startTime: Date;
+  endTime: Date;
 }
