@@ -7,7 +7,7 @@ function Header() {
 
   return (
     <>
-      <header className="flex sticky top-0 pb-1 pl-4 items-end h-12 bg-headerBackground">
+      <header className="flex sticky top-0 pb-1 pl-4 items-end h-12 bg-headerBackground z-50">
         <button
           className="w-16 cursor-pointer"
           type="button"
