@@ -1,15 +1,5 @@
-import { getIntervalArray } from 'pages/addschedulepage/utils';
+import { getIntervalArray } from 'pages/addSchedulePage/utils';
 import { Schedule } from 'types/schedule';
-
-export const WEEK = [
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'Saturday',
-  'Sunday',
-];
 
 export const DAY_OF_WEEK = [
   { id: 1, item: 'Monday' },
