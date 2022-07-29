@@ -1,15 +1,24 @@
+import useDeleteSchedule from 'hooks/useDeleteSchedule';
 import React from 'react';
 import { DayObject } from 'types/customTypes';
 
 interface TimeslotProps {
   isSpread: boolean;
   dayObject: DayObject;
+  day: string;
+  onChangeCheckData: () => void;
 }
 
-export default function Timeslot({ isSpread, dayObject }: TimeslotProps) {
+export default function Timeslot({
+  isSpread,
+  dayObject,
+  day,
+  onChangeCheckData,
+}: TimeslotProps) {
+  const { onDeleteSchedule } = useDeleteSchedule();
   const [needHidden, setNeedHidden] = React.useState<boolean>(false);
   const [isResized, setIsResized] = React.useState<boolean>(false);
-  const { startTime, endTime } = dayObject;
+  const { startTime, endTime, id } = dayObject;
 
   React.useEffect(() => {
     let delayedStyleChange: ReturnType<typeof setTimeout>;
@@ -46,6 +55,8 @@ export default function Timeslot({ isSpread, dayObject }: TimeslotProps) {
 
   function handleClick() {
     if (window.confirm('Are you sure to cancel the schedule?')) {
+      onDeleteSchedule(day, id);
+      onChangeCheckData();
       window.alert('Schedule canceled!');
     }
   }

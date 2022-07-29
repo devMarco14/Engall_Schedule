@@ -3,12 +3,16 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Path from 'routes/Path';
 import { WEEK } from 'libs/utils/Constants';
+import { useState } from 'react';
 import Dayslot from './components/Dayslot';
 import useWeekList from './hooks/useWeekList';
 
 function SchedulePage() {
   const { state, dispatch } = useWeekList();
-
+  const [checkData, setCheckData] = useState(true);
+  const onChangeCheckData = () => {
+    setCheckData((prev) => !prev);
+  };
   React.useEffect(() => {
     const foo = async (endPoint: string) => {
       try {
@@ -19,14 +23,19 @@ function SchedulePage() {
       }
     };
     WEEK.forEach((day: string) => foo(day));
-  }, []);
+  }, [checkData]);
 
   const weekListToDayslot = Object.keys(state).map(
     (key: string, index: number) => {
       let result;
       if (state[key].length > 0) {
         result = (
-          <Dayslot day={key} timeList={state[key]} key={`${key}_${index}`} />
+          <Dayslot
+            day={key}
+            timeList={state[key]}
+            onChangeCheckData={onChangeCheckData}
+            key={`${key}_${index}`}
+          />
         );
       }
       return result;
