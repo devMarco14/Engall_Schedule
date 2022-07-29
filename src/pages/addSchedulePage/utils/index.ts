@@ -16,7 +16,7 @@ export const INITIAL_TIME = {
     endTime: { hour: 0, minute: 0 },
 };
 
-export const getEndTime = (startTime: { hour: number; minute: number }) => {
+export const getClassEndTime = (startTime: { hour: number; minute: number }) => {
     const endMinute = startTime.minute + CLASS_DURATION;
     if (endMinute >= 60) {
         return { hour: startTime.hour + 1, minute: endMinute % 60 };

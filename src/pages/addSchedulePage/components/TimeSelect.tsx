@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
 import SelectBox from 'components/SelectBox';
 import React from 'react';
-import { getIntervalArray, getEndTime, INITIAL_TIME } from '../utils';
+import { getIntervalArray, getClassEndTime, INITIAL_TIME } from '../utils';
 
 interface TimeType {
   startTime: {
@@ -22,35 +22,41 @@ const selectBoxClass =
 function TimeSelect() {
   const [selectedTime, setSelectedTime] =
     React.useState<TimeType>(INITIAL_TIME);
+
   console.log(selectedTime);
 
   return (
     <section className="flex items-center">
-      <SelectBox
-        className={selectBoxClass}
-        selectedOption={selectedTime.startTime.hour}
-        optionList={hourList}
-        onSelectOption={(option: number) =>
-          setSelectedTime(({ startTime }) => ({
-            startTime: { ...startTime, hour: option },
-            endTime: { ...getEndTime({ ...startTime, hour: option }) },
-          }))
-        }
-        formatOption={(option: string) => option.padStart(2, '0')}
-      />
-      <span className="block mx-1">:</span>
-      <SelectBox
-        className={selectBoxClass}
-        selectedOption={selectedTime.startTime.minute}
-        optionList={minuteList}
-        onSelectOption={(option: number) =>
-          setSelectedTime(({ startTime }) => ({
-            startTime: { ...startTime, minute: option },
-            endTime: { ...getEndTime({ ...startTime, minute: option }) },
-          }))
-        }
-        formatOption={(option: string) => option.padStart(2, '0')}
-      />
+      {['hour', 'minute'].map((timeType) => (
+        <React.Fragment key={`container_${timeType}`}>
+          <SelectBox
+            key={`timeType_${timeType}`}
+            className={selectBoxClass}
+            optionList={timeType === 'hour' ? hourList : minuteList}
+            selectedOption={
+              timeType === 'hour'
+                ? selectedTime.startTime.hour
+                : selectedTime.startTime.minute
+            }
+            onSelectOption={(option: number) =>
+              setSelectedTime(({ startTime }) => ({
+                startTime: { ...startTime, [timeType]: option },
+                endTime: {
+                  ...getClassEndTime({ ...startTime, [timeType]: option }),
+                },
+                // isAM: true/false
+              }))
+            }
+            formatOption={(option: string) => option.padStart(2, '0')}
+          />
+          <span
+            key={`colon_${timeType}`}
+            className={`${timeType === 'hour' ? 'block' : 'hidden'} block mx-1`}
+          >
+            :
+          </span>
+        </React.Fragment>
+      ))}
     </section>
   );
 }

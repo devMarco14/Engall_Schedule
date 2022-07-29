@@ -1,6 +1,6 @@
 import React from 'react';
 import Option from 'components/Option';
-import { TiArrowSortedDown as ArrowDownLogo } from 'react-icons/ti';
+import { TiArrowSortedDown as ArrowDownIcon } from 'react-icons/ti';
 
 interface SelectBoxProps {
   optionList: (string | number)[];
@@ -31,10 +31,10 @@ function SelectBox({
           ? formatOption(selectedOption.toString())
           : selectedOption}
 
-        {isToggled ? <ArrowDownLogo color="gray" /> : null}
+        {isToggled ? <ArrowDownIcon color="gray" /> : null}
       </button>
       {isToggled ? (
-        <ul className="bg-zinc-50 h-36 text-center overflow-y-scroll scrollbar-hide">
+        <ul className="bg-zinc-50 h-24 text-center overflow-y-scroll scrollbar-hide">
           {optionList?.map((option, index) => (
             <Option
               key={`${option}_${index}`}
