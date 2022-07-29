@@ -50,10 +50,6 @@ function AddSchedulePage() {
     });
   };
 
-  React.useEffect(() => {
-    console.log(selectedTime);
-  }, [selectedTime]);
-
   return (
     <section className="w-full px-10">
       <h1 className="my-10 text-xl font-bold">Add class schedule</h1>
@@ -127,12 +123,12 @@ function AddSchedulePage() {
                   selectDay,
                   selectedTime,
                 );
-                if (response) {
-                  alert('Schedule saved!');
-                  navigate('/');
-                } else {
-                  alert('Current schedule is overlapped!');
-                }
+                // if (response) {
+                //   alert('Schedule saved!');
+                //   navigate('/');
+                // } else {
+                //   alert('Current schedule is overlapped!');
+                // }
               } catch (error) {
                 throw new Error(error as string);
               }
