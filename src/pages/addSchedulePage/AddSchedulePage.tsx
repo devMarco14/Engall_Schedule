@@ -6,7 +6,7 @@ import {
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import SelectBox from './components/SelectBox';
-import AMPM from './components/AMPM';
+import AMPM from '../addSchedulePage/components/AMPM';
 import DayOfWeek from './components/DayOfWeek';
 import { getClassEndTime } from './utils/index';
 
