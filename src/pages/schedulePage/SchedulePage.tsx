@@ -29,7 +29,7 @@ function SchedulePage() {
     Object.values(DAY_OF_WEEK).forEach(({ item }: DayInfo) =>
       getResponse(item),
     );
-  }, []);
+  }, [checkData]);
 
   const weekListToDayslot = Object.keys(state).map(
     (key: string, index: number) => {
