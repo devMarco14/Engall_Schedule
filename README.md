@@ -222,7 +222,7 @@ export default function Dayslot({ day, timeList }: DayslotProps) {
 };
  
 ``` 
-  # handleSort
+  - handleSort
     1. 첫 번째 케이스: 오전/오후 여부를 비교해 previousTime을 nextTime보다 선행하여 정렬시킴
     2. 두 번째 케이스: 오전/오후 여부를 비교해 previousTime을 nextTime의 후순위로 정렬시킴
     3. 세 번째 케이스: previousTime과 nextTime이 동일한 시간대로 분류되는 경우, 시작 시간을 비교해 정렬시킴
