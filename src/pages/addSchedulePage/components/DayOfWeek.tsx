@@ -15,8 +15,8 @@ function DayOfWeek({ selectDay, setSelectDay }: DayOfWeekProps) {
             className={`flex justify-center w-full h-10 mb-1 md:mr-2 border border-solid 
           border-gray-300 ${
             selectDay.includes(item)
-              ? 'bg-zinc-50 text-gray-200'
-              : 'bg-zinc-50 border-gray-400'
+              ? 'bg-zinc-50 border-gray-400'
+              : 'bg-zinc-50 text-gray-300'
           } font-normal items-center`}
           >
             {item}
