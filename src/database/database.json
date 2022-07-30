@@ -1,35 +1,22 @@
 {
   "Monday": [
     {
-      "id": "1",
+      "id": "2243",
       "startTime": {
-        "hour": "10",
-        "minute": "10",
-        "isAM": true
+        "hour": "01",
+        "minute": "50",
+        "isAM": false
       },
       "endTime": {
-        "hour": "10",
-        "minute": "50",
-        "isAM": true
+        "hour": "02",
+        "minute": "30",
+        "isAM": false
       }
     }
   ],
   "Tuesday": [
     {
-      "id": "2",
-      "startTime": {
-        "hour": "10",
-        "minute": "10",
-        "isAM": true
-      },
-      "endTime": {
-        "hour": "10",
-        "minute": "50",
-        "isAM": true
-      }
-    },
-    {
-      "id": 842,
+      "id": "8146",
       "startTime": {
         "hour": "02",
         "minute": "00",
@@ -37,123 +24,41 @@
       },
       "endTime": {
         "hour": "02",
-        "minute": "40",
+        "minute": 40,
         "isAM": false
       }
     },
     {
-      "id": 9362,
+      "id": "455",
       "startTime": {
-        "hour": "01",
-        "minute": "05",
-        "isAM": true
+        "hour": "11",
+        "minute": "40",
+        "isAM": false
       },
       "endTime": {
-        "hour": "01",
-        "minute": "45",
+        "hour": "12",
+        "minute": "20",
         "isAM": true
       }
     }
   ],
   "Wednesday": [
     {
-      "id": "3",
+      "id": "6740",
       "startTime": {
-        "hour": "10",
-        "minute": "10",
-        "isAM": true
-      },
-      "endTime": {
-        "hour": "10",
+        "hour": "01",
         "minute": "50",
-        "isAM": true
-      }
-    }
-  ],
-  "Thursday": [
-    {
-      "id": "4",
-      "startTime": {
-        "hour": "10",
-        "minute": "10",
-        "isAM": true
-      },
-      "endTime": {
-        "hour": "10",
-        "minute": "50",
-        "isAM": true
-      }
-    }
-  ],
-  "Friday": [
-    {
-      "id": "5",
-      "startTime": {
-        "hour": "10",
-        "minute": "10",
-        "isAM": true
-      },
-      "endTime": {
-        "hour": "10",
-        "minute": "50",
-        "isAM": true
-      }
-    }
-  ],
-  "Saturday": [
-    {
-      "id": "6",
-      "startTime": {
-        "hour": "10",
-        "minute": "10",
-        "isAM": true
-      },
-      "endTime": {
-        "hour": "10",
-        "minute": "50",
-        "isAM": true
-      }
-    },
-    {
-      "id": 1158,
-      "startTime": {
-        "hour": "10",
-        "minute": "05",
         "isAM": false
       },
       "endTime": {
-        "hour": "10",
-        "minute": "45",
+        "hour": "02",
+        "minute": "30",
         "isAM": false
       }
     }
   ],
-  "Sunday": [
-    {
-      "id": "7",
-      "startTime": {
-        "hour": "10",
-        "minute": "10",
-        "isAM": true
-      },
-      "endTime": {
-        "hour": "10",
-        "minute": "50",
-        "isAM": true
-      }
-    },
-    {
-      "id": 1974,
-      "startTime": {
-        "hour": "10",
-        "minute": "05",
-        "isAM": false
-      },
-      "endTime": {
-        "hour": "10",
-        "minute": "45",
-        "isAM": false
-      }
-    }
-  ]
+  "Thursday": [],
+  "Friday": [],
+  "Saturday": [],
+  "Sunday": []
 }
