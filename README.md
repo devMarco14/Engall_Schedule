@@ -8,7 +8,6 @@
 
 ## **1. 팀원 소개 **
 
-### # <a href="https://github.com/chaengs">심채영</a>
 ### # <a href="https://github.com/leejiho9898">이지호</a>
 ### # <a href="https://github.com/godcl1623">이치행<a>
 ### # <a href="https://github.com/devMarco14">임종혁</a>
