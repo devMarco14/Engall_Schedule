@@ -78,7 +78,6 @@ const useScheduleForm = () => {
     const numberOfOverlaps = possibleOverlapList.filter(
       (arr: ResponseSchedule[]) => arr.length > 0,
     ).length;
-    console.log(body);
     if (numberOfOverlaps === 0) {
       await Promise.all(
         weekdays.map((weekday) => {
