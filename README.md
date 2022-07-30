@@ -257,6 +257,11 @@ $ git clone https://github.com/Wanted-Pre-Onboarding-Team1/Engall_Schedule
 ```
 $ yarn
 ```
+### # json server 실행
+
+```
+$ yarn run server
+```
 
 ### # develop 서버 실행
 
@@ -269,8 +274,4 @@ $ yarn start
 ```
 $ git checkout -b feature/page
 ```
-### # json server 실행
 
-```
-$ yarn run server
-```
