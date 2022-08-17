@@ -4,6 +4,8 @@
 
 - 프로젝트 기간: 2022.07.28 ~ 2022.07.30
 
+- [Log_Link] https://www.notion.so/_Log_-a6d42f609f944f149ce0292ab869d969#b5cdb0073cf747ec9be395feea397be9
+
 <br />
 
 ## **1. 팀원 소개 **
